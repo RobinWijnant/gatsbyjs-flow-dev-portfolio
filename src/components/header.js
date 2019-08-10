@@ -14,7 +14,7 @@ const Wrapper = styled.header`
   justify-content: space-between;
 `
 const Logo = styled.img`
-  width: 30px;
+  width: 25px;
 `
 const NavList = styled.ul`
   list-style-type: none;
@@ -40,7 +40,7 @@ const Header = () => (
           <NavLink to="/">Home</NavLink>
         </NavItem>
         <NavLink>
-          <NavLink to="/cases">Cases</NavLink>
+          <NavLink to="/cases">Projects</NavLink>
         </NavLink>
       </NavList>
     </nav>

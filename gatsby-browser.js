@@ -7,5 +7,4 @@
 // You can delete this file if you're not using it
 
 import "normalize.css/normalize.css"
-import "./src/styles/fonts.css"
 import "./src/styles/global.css"
