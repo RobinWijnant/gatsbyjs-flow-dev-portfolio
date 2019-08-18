@@ -1,12 +1,25 @@
 import React from "react"
+import { graphql } from "gatsby"
 import SEO from "../components/seo"
-import Header from "../components/header"
+import Banner from "../components/banner"
 
-const IndexPage = () => (
+export default ({ data }) => (
   <>
-    <Header />
+    <Banner
+      image={data.file.childImageSharp.fluid}
+    />
     <SEO title="Home" />
   </>
 )
 
-export default IndexPage
+export const query = graphql`
+  query {
+    file(relativePath: { eq: "home/sky-towers.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 2000, quality: 90) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+  }
+`

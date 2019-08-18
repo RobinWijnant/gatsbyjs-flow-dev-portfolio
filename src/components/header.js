@@ -7,11 +7,12 @@ import logo from "../images/logo.svg"
 const Wrapper = styled.header`
   width: 100%;
   max-width: ${styleVars.maxWidth};
-  margin: 60px auto;
-  padding: 0 ${styleVars.wrapperPadding};
+  margin: 0 auto;
+  padding: 60px ${styleVars.wrapperPadding};
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `
 const Logo = styled.img`
   width: 25px;
@@ -19,6 +20,7 @@ const Logo = styled.img`
 const NavList = styled.ul`
   list-style-type: none;
   display: flex;
+  margin: 0;
 `
 const NavItem = styled.li`
   margin-right: 30px;
@@ -29,8 +31,8 @@ const NavLink = styled(Link)`
   font-weight: 500;
 `
 
-const Header = () => (
-  <Wrapper>
+const Header = ({className}) => (
+  <Wrapper className={className}>
     <Link to="/">
       <Logo src={logo} alt="Logo Robin Wijnant" />
     </Link>
@@ -39,9 +41,9 @@ const Header = () => (
         <NavItem>
           <NavLink to="/">Home</NavLink>
         </NavItem>
-        <NavLink>
+        <NavItem>
           <NavLink to="/cases">Projects</NavLink>
-        </NavLink>
+        </NavItem>
       </NavList>
     </nav>
   </Wrapper>

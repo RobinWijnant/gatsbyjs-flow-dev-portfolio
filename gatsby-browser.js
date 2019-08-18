@@ -8,3 +8,10 @@
 
 import "normalize.css/normalize.css"
 import "./src/styles/global.css"
+
+// IntersectionObserver polyfill for gatsby-background-image (Safari, IE)
+export const onClientEntry = () => {  
+  if (typeof window.IntersectionObserver === `undefined`) {
+    import(`intersection-observer`)
+  }
+}
