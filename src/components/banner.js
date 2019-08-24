@@ -74,12 +74,4 @@ const Banner = ({ className, image }) => (
   </div>
 )
 
-// Banner.defaultProps = {
-//   image: "",
-// }
-
-// SEO.propTypes = {
-//   image: PropTypes.string,
-// }
-
 export default Banner
