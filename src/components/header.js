@@ -1,7 +1,7 @@
 import { Link } from "gatsby"
 import React from "react"
 import styled from "@emotion/styled"
-import styleVars from "../styles/style-vars"
+import styleVars from "../styles/vars"
 import logo from "../images/logo.svg"
 
 const Wrapper = styled.header`

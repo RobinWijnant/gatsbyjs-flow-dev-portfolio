@@ -2,14 +2,15 @@ import React from "react"
 import { graphql } from "gatsby"
 import SEO from "../components/seo"
 import Banner from "../components/banner"
+import Page from "../components/page"
 
 export default ({ data }) => (
-  <>
+  <Page>
+    <SEO title="Home" />
     <Banner
       image={data.file.childImageSharp.fluid}
     />
-    <SEO title="Home" />
-  </>
+  </Page>
 )
 
 export const query = graphql`
