@@ -3,6 +3,10 @@ import styleVars from "../styles/vars"
 import { Global, css } from "@emotion/core"
 
 const styles = css`
+  html {
+    min-width: 320px;
+  }
+
   html, body {
     font-family: Montserrat, sans-serif;
     font-weight: 400;

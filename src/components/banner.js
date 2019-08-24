@@ -14,9 +14,13 @@ const CroppingShape = styled.div`
   background-image: url(${croppingShapeFile});
   background-size: 112.5%;
   background-position: 25% center;
+
+  @media (max-width: 1000px) {
+    background-position-x: 100%;
+  }
 `
 const BadgeShape = styled.div`
-  width: 80%;
+  width: calc(100% - 2 * ${styleVars.wrapperPadding});
   max-width: ${styleVars.maxWidth};
   min-height: 45.694%;
   margin: 0 auto;
@@ -25,16 +29,33 @@ const BadgeShape = styled.div`
   background-position: center bottom;
   padding: 60px 8% 20px;
   box-sizing: border-box;
+
+  @media (max-width: 1000px) {
+    width: 100%;
+    background-size: 110%;
+    padding-left: ${styleVars.wrapperPadding};
+    padding-right: ${styleVars.wrapperPadding};
+    margin-bottom: 20px;
+  }
 `
 const Slogan = styled.h2`
   margin: 12% 0;
   font-size: 26px;
   font-weight: 700;
-  line-height: 40px;
+  line-height: 150%;
   letter-spacing: 0.04em;
+
+  @media (max-width: 600px) {
+    font-size: 20px;
+    margin: 60px 0;
+  }
 `
 const ScrollSuggestionStyled = styled(ScrollSuggestion)`
   margin: 0 0 20px 4%;
+
+  @media (max-width: 600px) {
+    margin-left: 0;
+  }
 `
 
 const Banner = ({ className, image }) => (
