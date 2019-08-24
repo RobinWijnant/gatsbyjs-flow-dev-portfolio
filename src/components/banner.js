@@ -13,7 +13,7 @@ const CroppingShape = styled.div`
   padding-bottom: 8.307%;
   background-image: url(${croppingShapeFile});
   background-size: 112.5%;
-  background-position: 25% center;
+  background-position: 15% center;
 
   @media (max-width: 1000px) {
     background-position-x: 100%;
@@ -40,23 +40,33 @@ const BadgeShape = styled.div`
 `
 const ScrollSuggestionStyled = styled(ScrollSuggestion)`
   margin: 0 0 20px 4%;
+  transition: opacity 0.5s ease-in 1s;
+  opacity: ${props => props.show ? 1 : 0};
 
   @media (max-width: 600px) {
     margin-left: 0;
   }
 `
 
-const Banner = ({ className, image }) => (
-  <div className={className}>
-    <BackgroundImage tag={"div"} fluid={image} fadeIn={"soft"}>
-      <BadgeShape>
-        <Header />
-        <Slogan />
-        <ScrollSuggestionStyled />
-      </BadgeShape>
-      <CroppingShape />
-    </BackgroundImage>
-  </div>
-)
+class Banner extends React.Component {
+  state = {
+    sloganLoaded: false
+  }
+
+  render() {
+    return (
+      <div className={this.props.className}>
+        <BackgroundImage tag={"div"} fluid={this.props.image} fadeIn={"soft"}>
+          <BadgeShape>
+            <Header />
+            <Slogan onLoaded={() => this.setState({sloganLoaded: true})} />
+            <ScrollSuggestionStyled show={this.state.sloganLoaded} />
+          </BadgeShape>
+          <CroppingShape />
+        </BackgroundImage>
+      </div>
+    )
+  }
+}
 
 export default Banner

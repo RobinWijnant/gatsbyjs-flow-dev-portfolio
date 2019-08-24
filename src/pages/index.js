@@ -15,7 +15,7 @@ export default ({ data }) => (
 
 export const query = graphql`
   query {
-    file(relativePath: { eq: "home/sky-towers.jpg" }) {
+    file(relativePath: { eq: "home/sky-towers-edit.jpg" }) {
       childImageSharp {
         fluid(maxWidth: 2000, quality: 90) {
           ...GatsbyImageSharpFluid_withWebp
