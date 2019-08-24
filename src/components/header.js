@@ -8,7 +8,6 @@ const Wrapper = styled.header`
   width: 100%;
   max-width: ${styleVars.maxWidth};
   margin: 0 auto;
-  padding: 60px ${styleVars.wrapperPadding};
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
@@ -21,14 +20,16 @@ const NavList = styled.ul`
   list-style-type: none;
   display: flex;
   margin: 0;
+  padding: 0 0 0 20px;
 `
 const NavItem = styled.li`
-  margin-right: 30px;
+  margin-left: 30px;
 `
 const NavLink = styled(Link)`
   color: ${styleVars.headerTextColor};
   text-decoration: none;
   font-weight: 500;
+  font-size: 13px;
 `
 
 const Header = ({className}) => (
