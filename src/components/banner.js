@@ -2,9 +2,9 @@ import React from "react"
 import styled from "@emotion/styled"
 import styleVars from "../styles/vars"
 import Header from "./header"
+import Slogan from "./slogan"
 import ScrollSuggestion from "./scroll-suggestion"
 import BackgroundImage from "gatsby-background-image"
-
 import croppingShapeFile from "../images/banner-crop.svg"
 import badgeShapeFile from "../images/banner-badge.svg"
 
@@ -38,18 +38,6 @@ const BadgeShape = styled.div`
     margin-bottom: 20px;
   }
 `
-const Slogan = styled.h2`
-  margin: 12% 0;
-  font-size: 26px;
-  font-weight: 700;
-  line-height: 150%;
-  letter-spacing: 0.04em;
-
-  @media (max-width: 600px) {
-    font-size: 20px;
-    margin: 60px 0;
-  }
-`
 const ScrollSuggestionStyled = styled(ScrollSuggestion)`
   margin: 0 0 20px 4%;
 
@@ -63,10 +51,7 @@ const Banner = ({ className, image }) => (
     <BackgroundImage tag={"div"} fluid={image} fadeIn={"soft"}>
       <BadgeShape>
         <Header />
-        <Slogan>
-          Hi, I am Robin Wijnant.
-          <br />I create digital experiences.
-        </Slogan>
+        <Slogan />
         <ScrollSuggestionStyled />
       </BadgeShape>
       <CroppingShape />
