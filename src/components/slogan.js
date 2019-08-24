@@ -25,14 +25,14 @@ const cursorStyles = css`
 const Slogan = ({ className, onLoaded }) => (
   <H2 className={className}>
     <Typing 
-      speed={20} 
+      speed={25} 
       cursor={<Typing.Cursor css={cursorStyles} />}
       onFinishedTyping={onLoaded}
       >
       <span>
         Hi, I am Robin Wijnant.
         <Typing.Delay ms={500} />
-        <Typing.Speed ms={10} />
+        <Typing.Speed ms={20} />
         <br />I create digital experiences.
       </span>
     </Typing>
