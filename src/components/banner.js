@@ -13,7 +13,7 @@ const CroppingShape = styled.div`
   padding-bottom: 8.307%;
   background-image: url(${croppingShapeFile});
   background-size: 112.5%;
-  background-position: 15% center;
+  background-position: 25% center;
 
   @media (max-width: 1000px) {
     background-position-x: 100%;
@@ -27,14 +27,13 @@ const BadgeShape = styled.div`
   background-image: url(${badgeShapeFile});
   background-size: 100% auto;
   background-position: center bottom;
-  padding: 60px 8% 20px;
+  padding: 60px ${styleVars.wrapperPadding} 20px;
   box-sizing: border-box;
 
   @media (max-width: 1000px) {
     width: 100%;
     background-size: 110%;
-    padding-left: ${styleVars.wrapperPadding};
-    padding-right: ${styleVars.wrapperPadding};
+    padding-top: 40px;
     margin-bottom: 20px;
   }
 `

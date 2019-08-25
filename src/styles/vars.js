@@ -1,5 +1,5 @@
 const styleVars = {
-  wrapperPadding: "10vw",
+  wrapperPadding: "8vw",
   maxWidth: "1256px",
   textColor: "#5F5F5F",
   headerTextColor: "#000000",
