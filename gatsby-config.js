@@ -1,3 +1,13 @@
+const generateIconSizes = (sizes) => {
+  return sizes.map(width => {
+    return {
+      "src": `favicons/icon-${width}x${width}.png`,
+      "sizes": `${width}x${width}`,
+      "type": "image/png"
+    }
+  })
+}
+
 module.exports = {
   siteMetadata: {
     title: `Robin Wijnant`,
@@ -24,53 +34,13 @@ module.exports = {
         background_color: `#000000`,
         theme_color: `#FFFFFF`,
         display: `minimal-ui`,
-        // Hybrid mode
-        // This is needed because apache has an alias from /icons to the 
-        // Apache "/usr/share/apache2/icons/" more info: https://www.electrictoolbox.com/apache-icons-directory
-        // Create favicons folder instead of the default icons folder
+        // Icons Hybrid mode
+        // In automatic mode, icons will be exported to /icons
+        // This conflicts with the Apache /icons symlink to /usr/share/apache2/icons/
+        // (https://www.electrictoolbox.com/apache-icons-directory)
+        // The solution is to create a favicons folder instead of the default icons folder
         icon: `src/images/logo.svg`,
-        icons: [
-          {
-            "src": "favicons/icon-48x48.png",
-            "sizes": "48x48",
-            "type": "image/png"
-          },
-          {
-            "src": "favicons/icon-72x72.png",
-            "sizes": "72x72",
-            "type": "image/png"
-          },
-          {
-            "src": "favicons/icon-96x96.png",
-            "sizes": "96x96",
-            "type": "image/png"
-          },
-          {
-            "src": "favicons/icon-144x144.png",
-            "sizes": "144x144",
-            "type": "image/png"
-          },
-          {
-            "src": "favicons/icon-192x192.png",
-            "sizes": "192x192",
-            "type": "image/png"
-          },
-          {
-            "src": "favicons/icon-256x256.png",
-            "sizes": "256x256",
-            "type": "image/png"
-          },
-          {
-            "src": "favicons/icon-384x384.png",
-            "sizes": "384x384",
-            "type": "image/png"
-          },
-          {
-            "src": "favicons/icon-512x512.png",
-            "sizes": "512x512",
-            "type": "image/png"
-          },
-        ],
+        icons: generateIconSizes([48, 72, 96, 144, 192, 256, 384, 512]),
       },
     },
     'gatsby-plugin-emotion',
