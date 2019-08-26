@@ -4,6 +4,7 @@ import styleVars from "../styles/vars"
 
 const Text = styled.h3`
   margin-top: ${styleVars.spacing.sectionMargin};
+  margin-bottom: calc(${styleVars.spacing.sectionMargin} / 2);
   text-align: center;
 `
 
