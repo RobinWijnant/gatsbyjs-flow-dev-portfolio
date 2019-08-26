@@ -1,15 +1,16 @@
 import React from "react"
 import { graphql } from "gatsby"
+import Page from "../components/page"
 import SEO from "../components/seo"
 import Banner from "../components/banner"
-import Page from "../components/page"
+import SectionHeading from "../components/section-heading"
 
 export default ({ data }) => (
   <Page>
     <SEO title="Home" />
-    <Banner
-      image={data.file.childImageSharp.fluid}
-    />
+    <Banner image={data.file.childImageSharp.fluid} />
+    <SectionHeading>My recent projects</SectionHeading>
+    {/* <ProjectPicker projects={data.projects} /> */}
   </Page>
 )
 

@@ -6,7 +6,7 @@ import logo from "../images/logo.svg"
 
 const Wrapper = styled.header`
   width: 100%;
-  max-width: ${styleVars.maxWidth};
+  max-width: ${styleVars.spacing.maxWidth};
   margin: 0 auto;
   box-sizing: border-box;
   display: flex;
@@ -26,7 +26,7 @@ const NavItem = styled.li`
   margin-left: 30px;
 `
 const NavLink = styled(Link)`
-  color: ${styleVars.headerTextColor};
+  color: ${styleVars.colors.black};
   text-decoration: none;
   font-weight: 500;
   font-size: 13px;

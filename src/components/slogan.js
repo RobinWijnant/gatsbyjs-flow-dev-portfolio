@@ -19,7 +19,7 @@ const H2 = styled.h2`
   }
 `
 const cursorStyles = css`
-  color: ${styleVars.bannerColor};
+  color: ${styleVars.colors.palette.CrayolaGold};
 `
 
 const Slogan = ({ className, onLoaded }) => (

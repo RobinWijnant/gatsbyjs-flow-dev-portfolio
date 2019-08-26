@@ -20,14 +20,14 @@ const CroppingShape = styled.div`
   }
 `
 const BadgeShape = styled.div`
-  width: calc(100% - 2 * ${styleVars.wrapperPadding});
-  max-width: ${styleVars.maxWidth};
+  width: calc(100% - 2 * ${styleVars.spacing.sideMargin});
+  max-width: ${styleVars.spacing.maxWidth};
   min-height: 45.694%;
   margin: 0 auto;
   background-image: url(${badgeShapeFile});
   background-size: 100% auto;
   background-position: center bottom;
-  padding: 60px ${styleVars.wrapperPadding} 20px;
+  padding: 60px ${styleVars.spacing.sideMargin} 20px;
   box-sizing: border-box;
 
   @media (max-width: 1000px) {

@@ -4,15 +4,20 @@ import { Global, css } from "@emotion/core"
 
 const styles = css`
   html {
-    min-width: 320px;
-    font-family: Montserrat, sans-serif;
-    font-weight: 400;
-    font-size: 12px;
-    color: ${styleVars.textColor};
+    min-width: ${styleVars.spacing.minWidth};
+    font-family: ${styleVars.text.family};
+    font-weight: ${styleVars.text.weight};
+    font-size: ${styleVars.text.size};
+    color: ${styleVars.colors.grey[700]};
   }
   
   h2 {
-    color: ${styleVars.headerTextColor}
+    color: ${styleVars.colors.black};
+    font-size: 26px;
+  }
+
+  h3 {
+    font-size: 20px;
   }
 `
 
