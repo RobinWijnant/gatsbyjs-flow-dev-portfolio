@@ -13,7 +13,7 @@ const CroppingShape = styled.div`
   padding-bottom: 8.307%;
   background-image: url(${croppingShapeFile});
   background-size: 112.5%;
-  background-position: 25% center;
+  background-position: 35% center;
 
   @media (max-width: 1000px) {
     background-position-x: 100%;

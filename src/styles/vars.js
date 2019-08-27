@@ -1,6 +1,6 @@
 const spacing = {
   minWidth: "320px",
-  maxWidth: "1256px",
+  maxWidth: "1347px",
   sideMargin: "8vw",
   sectionMargin: "calc(50px + 4vw)",
 }
@@ -22,7 +22,7 @@ const colors = {
 
 const text = {
   color: colors.grey[700],
-  size: "12px",
+  size: "14px",
   weight: "normal",
   family: "Montserrat, sans-serif",
 }

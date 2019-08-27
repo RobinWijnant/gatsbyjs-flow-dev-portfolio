@@ -29,7 +29,6 @@ const NavLink = styled(Link)`
   color: ${styleVars.colors.black};
   text-decoration: none;
   font-weight: 500;
-  font-size: 13px;
 `
 
 const Header = ({className}) => (

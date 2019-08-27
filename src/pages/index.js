@@ -1,4 +1,5 @@
 import React from "react"
+import styled from "@emotion/styled"
 import { graphql } from "gatsby"
 import Page from "../components/page"
 import SEO from "../components/seo"
@@ -6,12 +7,16 @@ import Banner from "../components/banner"
 import SectionHeading from "../components/section-heading"
 import ProjectPicker from "../components/project-picker"
 
+const ProjectPickerStyled = styled(ProjectPicker)`
+  margin: 100px auto;
+`
+
 export default ({ data }) => (
   <Page>
     <SEO title="Home" />
     <Banner image={data.file.childImageSharp.fluid} />
-    <SectionHeading>My recent projects</SectionHeading>
-    <ProjectPicker projects={data.projects} />
+    <SectionHeading>Some of my latest work</SectionHeading>
+    <ProjectPickerStyled projects={data.projects} />
   </Page>
 )
 
