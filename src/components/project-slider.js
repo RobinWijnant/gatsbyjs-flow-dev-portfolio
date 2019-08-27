@@ -1,10 +1,12 @@
 import React from "react"
+import PropTypes from 'prop-types';
 import styled from "@emotion/styled"
 import Wrapper from "./wrapper"
 import ShevronRightImage from "../images/chevron-right.svg"
 import GreyPolygonImage from "../images/shapes/polygon-grey.svg"
 import YellowPolygonImage from "../images/shapes/polygon-yellow.svg"
 import BluePolygonImage from "../images/shapes/polygon-blue.svg"
+import DottedCurveImage from "../images/shapes/curve-dotted.svg"
 
 const WrapperStyled = styled(Wrapper)`
   display: flex;
@@ -14,24 +16,31 @@ const WrapperStyled = styled(Wrapper)`
 `
 const GreyPolygon = styled.img`
   position: absolute;
+  z-index: -1;
   width: 30%;
   left: -4%;
-  bottom: -40%;
-  z-index: -1;
+  bottom: -12%;
 `
 const YellowPolygon = styled.img`
   position: absolute;
+  z-index: -1;
   width: 10%;
   left: 8%;
-  top: -22%;
-  z-index: -1;
+  top: 2%;
 `
 const BluePolygon = styled.img`
   position: absolute;
+  z-index: -1;
   width: 45%;
   right: -4%;
-  top: -25%;
+  top: -2%;
+`
+const DottedCurve = styled.img`
+  position: absolute;
   z-index: -1;
+  width: 50%;
+  top: 30%;
+  right: -2%;
 `
 const Arrow = styled.button`
   padding: 0;
@@ -46,16 +55,16 @@ const Arrow = styled.button`
   background-repeat: no-repeat;
   width: 30px;
   height: 60px;
-  cursor: pointer;
   transform: ${props => (props.direction === "left" ? "rotate(180deg)" : 0)};
   opacity: ${props => (props.disabled ? 0.3 : 1)};
+  cursor: ${props => (props.disabled ? "auto" : "pointer")};
 `
 const Projects = styled.div`
   flex-grow: 1;
-  margin: 0 5%;
-`
-const ProjectDeck = styled.div`
+  padding: 50px;
+  overflow: hidden;
   width: 100%;
+  white-space: nowrap;
 `
 const Project = styled.a`
   text-decoration: none;
@@ -71,23 +80,41 @@ const Project = styled.a`
   & + & {
     margin-left: 5%;
   }
+
+  & + & + & + & {
+    margin-left: 150px;
+  }
 `
 
-const ProjectPicker = ({ className }) => (
-  <WrapperStyled className={className}>
-    <GreyPolygon src={GreyPolygonImage} alt={"Polygon background shape"} />
-    <YellowPolygon src={YellowPolygonImage} alt={"Polygon background shape"} />
-    <BluePolygon src={BluePolygonImage} alt={"Polygon background shape"} />
-    <Arrow direction={"left"} disabled />
-    <Projects>
-      <ProjectDeck>
-        <Project></Project>
-        <Project></Project>
-        <Project></Project>
-      </ProjectDeck>
-    </Projects>
-    <Arrow direction={"right"} />
-  </WrapperStyled>
-)
+class ProjectSlider extends React.Component {
+  state = {
+    index: 0
+  }
 
-export default ProjectPicker
+  render() {
+    return (
+      <WrapperStyled className={this.props.className}>
+        <GreyPolygon src={GreyPolygonImage} alt={"Grey polygon background shape"} />
+        <YellowPolygon src={YellowPolygonImage} alt={"Yellow polygon background shape"} />
+        <DottedCurve src={DottedCurveImage} alt={"Dotted curve background shape"} />
+        <BluePolygon src={BluePolygonImage} alt={"Blue polygon background shape"} />
+        <Arrow direction={"left"} disabled />
+        <Projects>
+          <Project></Project>
+          <Project></Project>
+          <Project></Project>
+          <Project></Project>
+        </Projects>
+        <Arrow direction={"right"} />
+      </WrapperStyled>
+    )
+  }
+
+}
+
+ProjectSlider.propTypes = {
+  className: PropTypes.string,
+  projects: PropTypes.object
+};
+
+export default ProjectSlider

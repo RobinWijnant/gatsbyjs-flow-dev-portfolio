@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from 'prop-types';
 import styled from "@emotion/styled"
 import styleVars from "../styles/vars"
 import Header from "./header"
@@ -67,5 +68,10 @@ class Banner extends React.Component {
     )
   }
 }
+
+Banner.propTypes = {
+  className: PropTypes.string,
+  image: PropTypes.object
+};
 
 export default Banner

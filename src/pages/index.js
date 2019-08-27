@@ -5,9 +5,9 @@ import Page from "../components/page"
 import SEO from "../components/seo"
 import Banner from "../components/banner"
 import SectionHeading from "../components/section-heading"
-import ProjectPicker from "../components/project-picker"
+import ProjectSlider from "../components/project-slider"
 
-const ProjectPickerStyled = styled(ProjectPicker)`
+const ProjectPickerStyled = styled(ProjectSlider)`
   margin: 100px auto;
 `
 
