@@ -63,8 +63,11 @@ const Projects = styled.div`
   flex-grow: 1;
   padding: 50px;
   overflow: hidden;
-  width: 100%;
+`
+const ProjectDeck = styled.div`
   white-space: nowrap;
+  width: 100%;
+  transition: margin 0.8s ease-in-out;
 `
 const Project = styled.a`
   text-decoration: none;
@@ -88,7 +91,31 @@ const Project = styled.a`
 
 class ProjectSlider extends React.Component {
   state = {
-    index: 0
+    slideIndex: 0,
+    total: 2
+  }
+
+  constructor(props) {
+    super(props)
+    this.projectsDeckRef = React.createRef()
+  }
+
+  previous() {
+    if (this.state.slideIndex - 1 < 0) return
+    this.setState({slideIndex: this.state.slideIndex - 1})
+  }
+
+  next() {
+    if (this.state.slideIndex + 1 === this.state.total) return
+    this.setState({slideIndex: this.state.slideIndex + 1})
+  }
+  
+  calculateMarginOffset() {
+    if (!this.projectsDeckRef.current) {
+      return 0
+    }
+    const margin =  -(this.projectsDeckRef.current.offsetWidth * this.state.slideIndex + this.state.slideIndex * 150)
+    return margin + "px"
   }
 
   render() {
@@ -98,14 +125,16 @@ class ProjectSlider extends React.Component {
         <YellowPolygon src={YellowPolygonImage} alt={"Yellow polygon background shape"} />
         <DottedCurve src={DottedCurveImage} alt={"Dotted curve background shape"} />
         <BluePolygon src={BluePolygonImage} alt={"Blue polygon background shape"} />
-        <Arrow direction={"left"} disabled />
+        <Arrow direction={"left"} disabled={this.state.slideIndex === 0} onClick={this.previous.bind(this)} />
         <Projects>
-          <Project></Project>
-          <Project></Project>
-          <Project></Project>
-          <Project></Project>
+          <ProjectDeck ref={this.projectsDeckRef} style={{marginLeft: this.calculateMarginOffset()}}>
+            <Project></Project>
+            <Project></Project>
+            <Project></Project>
+            <Project></Project>
+          </ProjectDeck>
         </Projects>
-        <Arrow direction={"right"} />
+        <Arrow direction={"right"} disabled={this.state.slideIndex + 1 === this.state.total} onClick={this.next.bind(this)} />
       </WrapperStyled>
     )
   }
