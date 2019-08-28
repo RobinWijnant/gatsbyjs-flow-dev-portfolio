@@ -97,59 +97,82 @@ const Project = styled(Link)`
 
 class ProjectSlider extends React.Component {
   state = {
-    slideIndex: 0,
-    total: 7
+    index: 0,
+    total: 999,
+    deckOffset: 0
   }
 
   constructor(props) {
     super(props)
     this.projectDeckRef = React.createRef()
   }
-
+  
   componentDidMount() {
-    this.projectDeckRef.current.addEventListener("onresize", this.calculateMarginOffset)
+    this.setState({total: this.projectDeckRef.current.children.length})
+    this.updateDeckOffset(this.state.index)
+    window.addEventListener("resize", () => this.updateDeckOffset(this.state.index))
   }
 
   componentWillUnmount() {
-    this.projectDeckRef.current.removeEventListener("onresize", this.calculateMarginOffset)
+    window.removeEventListener("resize", () => this.updateDeckOffset(this.state.index))
+  }
+  
+  updateDeckOffset(index) {
+    const deckIndex = Math.floor(index / this.getAmountOfVisibleProjects())
+    console.log(index)
+    let offset =  this.projectDeckRef.current.offsetWidth * deckIndex
+    offset += deckMargin * deckIndex
+    this.setState({deckOffset: offset})
   }
 
   previous() {
-    if (this.state.slideIndex - 1 < 0) return
-    this.setState({slideIndex: this.state.slideIndex - 1})
-  }
-
-  next() {
-    if (this.state.slideIndex + 1 === this.state.total) return
-    this.setState({slideIndex: this.state.slideIndex + 1})
+    const newIndex = this.state.index - this.getAmountOfVisibleProjects()
+    if (newIndex < 0) {
+      this.setState({index: 0})
+    }
+    this.setState({index: newIndex})
+    this.updateDeckOffset(newIndex)
   }
   
-  calculateMarginOffset() {
-    console.log(this.projectDeckRef)
-    if (!this.projectDeckRef.current) {
-      return 0
+  next() {
+    const newIndex = this.state.index + this.getAmountOfVisibleProjects()
+    if (newIndex >= this.state.total) {
+      this.setState({index: this.state.total})
     }
-    let margin =  this.projectDeckRef.current.offsetWidth * this.state.slideIndex
-    margin += this.state.slideIndex * deckMargin
-    return -margin + "px"
+    this.setState({index: newIndex})
+    this.updateDeckOffset(newIndex)
   }
 
+  getAmountOfVisibleProjects() {
+    if (window.innerWidth > 1000) return 3
+    if (window.innerWidth > 800) return 2
+    return 1
+  }
+
+  isPreviousDisabled() {
+    return this.state.index - this.getAmountOfVisibleProjects() < 0
+  }
+
+  isNextDisabled() {
+    return this.state.index + this.getAmountOfVisibleProjects() >= this.state.total
+  }
+  
   render() {
     return (
       <Container className={this.props.className}>
-        <Arrow direction={"left"} disabled={this.state.slideIndex === 0} onClick={this.previous.bind(this)} />
+        <Arrow direction={"left"} disabled={this.isPreviousDisabled()} onClick={this.previous.bind(this)} />
         <Projects>
-          <ProjectDeck ref={this.projectDeckRef} style={{marginLeft: this.calculateMarginOffset()}}>
-            <Project to={"/projects/someLink"}></Project>
-            <Project to={"/projects/someLink"}></Project>
-            <Project to={"/projects/someLink"}></Project>
-            <Project to={"/projects/someLink"}></Project>
-            <Project to={"/projects/someLink"}></Project>
-            <Project to={"/projects/someLink"}></Project>
-            <Project to={"/projects/someLink"}></Project>
+          <ProjectDeck ref={this.projectDeckRef} style={{marginLeft: -this.state.deckOffset + "px"}}>
+            <Project to={"/projects/someLink"}>1</Project>
+            <Project to={"/projects/someLink"}>2</Project>
+            <Project to={"/projects/someLink"}>3</Project>
+            <Project to={"/projects/someLink"}>4</Project>
+            <Project to={"/projects/someLink"}>5</Project>
+            <Project to={"/projects/someLink"}>6</Project>
+            <Project to={"/projects/someLink"}>7</Project>
           </ProjectDeck>
         </Projects>
-        <Arrow direction={"right"} disabled={this.state.slideIndex + 1 === this.state.total} onClick={this.next.bind(this)} />
+        <Arrow direction={"right"} disabled={this.isNextDisabled()} onClick={this.next.bind(this)} />
       </Container>
     )
   }
