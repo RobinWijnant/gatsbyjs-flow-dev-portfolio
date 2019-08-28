@@ -165,19 +165,19 @@ class ProjectSlider extends React.Component {
   render() {
     return (
       <Container className={this.props.className}>
-        <Arrow direction={"left"} disabled={this.isPreviousDisabled()} onClick={this.previous.bind(this)} />
+        <Arrow aria-label={"previous"} direction={"left"} disabled={this.isPreviousDisabled()} onClick={this.previous.bind(this)} />
         <Projects>
           <ProjectDeck ref={this.projectDeckRef} style={{marginLeft: -this.state.deckOffset + "px"}}>
-            <Project to={"/projects/someLink"}></Project>
-            <Project to={"/projects/someLink"}></Project>
-            <Project to={"/projects/someLink"}></Project>
-            <Project to={"/projects/someLink"}></Project>
-            <Project to={"/projects/someLink"}></Project>
-            <Project to={"/projects/someLink"}></Project>
-            <Project to={"/projects/someLink"}></Project>
+            <Project to={"/projects/someLink"} aria-label="Go to project NAME"></Project>
+            <Project to={"/projects/someLink"} aria-label="Go to project NAME"></Project>
+            <Project to={"/projects/someLink"} aria-label="Go to project NAME"></Project>
+            <Project to={"/projects/someLink"} aria-label="Go to project NAME"></Project>
+            <Project to={"/projects/someLink"} aria-label="Go to project NAME"></Project>
+            <Project to={"/projects/someLink"} aria-label="Go to project NAME"></Project>
+            <Project to={"/projects/someLink"} aria-label="Go to project NAME"></Project>
           </ProjectDeck>
         </Projects>
-        <Arrow direction={"right"} disabled={this.isNextDisabled()} onClick={this.next.bind(this)} />
+        <Arrow aria-label={"next"} direction={"right"} disabled={this.isNextDisabled()} onClick={this.next.bind(this)} />
       </Container>
     )
   }
