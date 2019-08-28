@@ -124,7 +124,6 @@ class ProjectSlider extends React.Component {
   
   updateDeckOffset(index) {
     const deckIndex = Math.floor(index / this.getAmountOfVisibleProjects())
-    console.log(index)
     let offset =  this.projectDeckRef.current.offsetWidth * deckIndex
     offset += deckMargin * deckIndex
     this.setState({deckOffset: offset})
