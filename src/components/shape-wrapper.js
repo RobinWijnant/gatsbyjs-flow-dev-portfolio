@@ -84,7 +84,8 @@ const DottedCurve = styled.img`
   }
 
   @media (max-width: 500px) {
-    right: -520px;
+    right: -450px;
+    bottom: -30%;
   }
 `
 
