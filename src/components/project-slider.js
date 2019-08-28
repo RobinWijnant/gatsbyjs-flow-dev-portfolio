@@ -7,6 +7,7 @@ import GreyPolygonImage from "../images/shapes/polygon-grey.svg"
 import YellowPolygonImage from "../images/shapes/polygon-yellow.svg"
 import BluePolygonImage from "../images/shapes/polygon-blue.svg"
 import DottedCurveImage from "../images/shapes/curve-dotted.svg"
+import { Link } from "gatsby";
 
 const WrapperStyled = styled(Wrapper)`
   display: flex;
@@ -69,7 +70,8 @@ const ProjectDeck = styled.div`
   width: 100%;
   transition: margin 0.8s ease-in-out;
 `
-const Project = styled.a`
+const deckMargin = 150;
+const Project = styled(Link)`
   text-decoration: none;
   color: inherit;
   background: #ffffff;
@@ -85,7 +87,7 @@ const Project = styled.a`
   }
 
   & + & + & + & {
-    margin-left: 150px;
+    margin-left: ${deckMargin}px;
   }
 `
 
@@ -114,8 +116,9 @@ class ProjectSlider extends React.Component {
     if (!this.projectsDeckRef.current) {
       return 0
     }
-    const margin =  -(this.projectsDeckRef.current.offsetWidth * this.state.slideIndex + this.state.slideIndex * 150)
-    return margin + "px"
+    let margin =  this.projectsDeckRef.current.offsetWidth * this.state.slideIndex
+    margin += this.state.slideIndex * deckMargin
+    return -margin + "px"
   }
 
   render() {
@@ -128,10 +131,10 @@ class ProjectSlider extends React.Component {
         <Arrow direction={"left"} disabled={this.state.slideIndex === 0} onClick={this.previous.bind(this)} />
         <Projects>
           <ProjectDeck ref={this.projectsDeckRef} style={{marginLeft: this.calculateMarginOffset()}}>
-            <Project></Project>
-            <Project></Project>
-            <Project></Project>
-            <Project></Project>
+            <Project to={""}></Project>
+            <Project to={""}></Project>
+            <Project to={""}></Project>
+            <Project to={""}></Project>
           </ProjectDeck>
         </Projects>
         <Arrow direction={"right"} disabled={this.state.slideIndex + 1 === this.state.total} onClick={this.next.bind(this)} />
