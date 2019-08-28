@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "@emotion/styled"
 import styleVars from "../styles/vars"
+import Wrapper from "./wrapper"
 
 const Text = styled.h3`
   margin-top: ${styleVars.spacing.sectionMargin};
@@ -9,7 +10,9 @@ const Text = styled.h3`
 `
 
 const SectionHeading = ({className, children}) => (
-  <Text className={className}>{children}</Text>
+  <Wrapper>
+    <Text className={className}>{children}</Text>
+  </Wrapper>
 )
 
 export default SectionHeading
