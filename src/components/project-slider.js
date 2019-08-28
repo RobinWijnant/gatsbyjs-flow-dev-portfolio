@@ -59,6 +59,11 @@ const Project = styled(Link)`
   display: inline-block;
   width: 30%;
   cursor: pointer;
+  transition: transform 0.5s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 
   & + & {
     margin-left: 5%;
