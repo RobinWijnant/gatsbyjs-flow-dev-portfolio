@@ -168,13 +168,13 @@ class ProjectSlider extends React.Component {
         <Arrow direction={"left"} disabled={this.isPreviousDisabled()} onClick={this.previous.bind(this)} />
         <Projects>
           <ProjectDeck ref={this.projectDeckRef} style={{marginLeft: -this.state.deckOffset + "px"}}>
-            <Project to={"/projects/someLink"}>1</Project>
-            <Project to={"/projects/someLink"}>2</Project>
-            <Project to={"/projects/someLink"}>3</Project>
-            <Project to={"/projects/someLink"}>4</Project>
-            <Project to={"/projects/someLink"}>5</Project>
-            <Project to={"/projects/someLink"}>6</Project>
-            <Project to={"/projects/someLink"}>7</Project>
+            <Project to={"/projects/someLink"}></Project>
+            <Project to={"/projects/someLink"}></Project>
+            <Project to={"/projects/someLink"}></Project>
+            <Project to={"/projects/someLink"}></Project>
+            <Project to={"/projects/someLink"}></Project>
+            <Project to={"/projects/someLink"}></Project>
+            <Project to={"/projects/someLink"}></Project>
           </ProjectDeck>
         </Projects>
         <Arrow direction={"right"} disabled={this.isNextDisabled()} onClick={this.next.bind(this)} />
