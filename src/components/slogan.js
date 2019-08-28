@@ -29,12 +29,11 @@ const Slogan = ({ className, onLoaded }) => (
       cursor={<Typing.Cursor css={cursorStyles} />}
       onFinishedTyping={onLoaded}
       >
-      <span>
-        Hi, I am Robin Wijnant.
-        <Typing.Delay ms={500} />
-        <Typing.Speed ms={20} />
-        <br />I create digital experiences.
-      </span>
+      <span>Hi, I am Robin Wijnant.</span>
+      <Typing.Delay ms={500} />
+      <Typing.Speed ms={20} />
+      <span><br />I create digital experiences.</span>
+      <Typing.Delay ms={1500} />
     </Typing>
   </H2>
 )
