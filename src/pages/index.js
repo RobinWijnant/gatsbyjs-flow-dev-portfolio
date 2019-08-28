@@ -6,9 +6,10 @@ import SEO from "../components/seo"
 import Banner from "../components/banner"
 import SectionHeading from "../components/section-heading"
 import ProjectSlider from "../components/project-slider"
+import ShapeWrapper from "../components/shape-wrapper";
 
-const ProjectPickerStyled = styled(ProjectSlider)`
-  margin: 100px auto;
+const ShapeWrapperStyled = styled(ShapeWrapper)`
+  /* margin: 100px auto; */
 `
 
 export default ({ data }) => (
@@ -16,7 +17,9 @@ export default ({ data }) => (
     <SEO title="Home" />
     <Banner image={data.file.childImageSharp.fluid} />
     <SectionHeading>Some of my latest work</SectionHeading>
-    <ProjectPickerStyled projects={data.projects} />
+    <ShapeWrapperStyled>
+      <ProjectSlider projects={data.projects} />
+    </ShapeWrapperStyled>
   </Page>
 )
 
