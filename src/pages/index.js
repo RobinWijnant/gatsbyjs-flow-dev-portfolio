@@ -17,9 +17,9 @@ export default ({ data }) => (
     <SEO title="Home" />
     <Banner image={data.file.childImageSharp.fluid} />
     <SectionHeading>Some of my latest work</SectionHeading>
-    <ShapeWrapperStyled>
+    {/* <ShapeWrapperStyled>
       <ProjectSlider projects={data.projects} />
-    </ShapeWrapperStyled>
+    </ShapeWrapperStyled> */}
   </Page>
 )
 
