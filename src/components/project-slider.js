@@ -18,19 +18,20 @@ const Arrow = styled.button`
   color: inherit;
   background: none;
   background-image: url(${ShevronRightImage});
-  background-position: center;
+  background-position: right center;
   background-size: contain;
   background-repeat: no-repeat;
   flex-shrink: 0;
   display: block;
-  width: 30px;
+  width: 40px;
   height: 60px;
   transform: ${props => (props.direction === "left" ? "rotate(180deg)" : "none")};
   opacity: ${props => (props.disabled ? 0.3 : 1)};
   cursor: ${props => (props.disabled ? "auto" : "pointer")};
 
   @media (max-width: 500px) {
-    width: 15px;
+    width: 30px;
+    height: 40px;
   }
 `
 const Projects = styled.div`
