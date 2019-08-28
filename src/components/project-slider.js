@@ -149,6 +149,7 @@ class ProjectSlider extends React.Component {
   }
 
   getAmountOfVisibleProjects() {
+    if (!window) return 1 // Server side render
     if (window.innerWidth > 1000) return 3
     if (window.innerWidth > 800) return 2
     return 1
