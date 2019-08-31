@@ -69,5 +69,6 @@ module.exports = {
         ],
       },
     },
+    'gatsby-plugin-flow',
   ],
 }

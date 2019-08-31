@@ -56,7 +56,7 @@ class Banner extends React.Component {
   render() {
     return (
       <div className={this.props.className}>
-        <BackgroundImage tag={"div"} fluid={this.props.image} fadeIn={"soft"}>
+        <BackgroundImage tag={"div"} fluid={this.props.image.fluid} fadeIn={"soft"}>
           <BadgeShape>
             <Header />
             <Slogan onLoaded={() => this.setState({sloganLoaded: true})} />

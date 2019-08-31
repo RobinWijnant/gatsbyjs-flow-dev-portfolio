@@ -1,8 +1,10 @@
-import React from "react"
+// @flow
+import * as React from "react"
 import PropTypes from 'prop-types';
 import styled from "@emotion/styled"
 import ShevronRightImage from "../images/chevron-right.svg"
 import { Link } from "gatsby";
+import type { ProjectListItem } from "../query-parsers/home"
 
 const Container = styled.div`
   width: 100%;
@@ -100,16 +102,28 @@ const Project = styled(Link)`
   }
 `
 
-class ProjectSlider extends React.Component {
+type Props = {
+  className?: string,
+  projects: ProjectListItem[],
+}
+
+type State = {
+  index: number,
+  total: number,
+  deckOffset: number,
+}
+
+class ProjectSlider extends React.Component<Props, State> {
   state = {
     index: 0,
     total: 999,
     deckOffset: 0
   }
+  projectDeckRef: { current: ProjectDeck }
 
-  constructor(props) {
+  constructor(props: Props) {
     super(props)
-    this.projectDeckRef = React.createRef()
+    this.projectDeckRef = React.createRef<ProjectDeck>()
   }
   
   componentDidMount() {
@@ -122,7 +136,7 @@ class ProjectSlider extends React.Component {
     window.removeEventListener("resize", () => this.updateDeckOffset(this.state.index))
   }
   
-  updateDeckOffset(index) {
+  updateDeckOffset(index: number) {
     const deckIndex = Math.floor(index / this.getAmountOfVisibleProjects())
     let offset =  this.projectDeckRef.current.offsetWidth * deckIndex
     offset += deckMargin * deckIndex
@@ -147,18 +161,18 @@ class ProjectSlider extends React.Component {
     this.updateDeckOffset(newIndex)
   }
 
-  getAmountOfVisibleProjects() {
+  getAmountOfVisibleProjects(): number {
     if (typeof window === "undefined") return 1 // Server side render
     if (window.innerWidth > 1000) return 3
     if (window.innerWidth > 800) return 2
     return 1
   }
 
-  isPreviousDisabled() {
+  isPreviousDisabled(): boolean {
     return this.state.index - this.getAmountOfVisibleProjects() < 0
   }
 
-  isNextDisabled() {
+  isNextDisabled(): boolean {
     return this.state.index + this.getAmountOfVisibleProjects() >= this.state.total
   }
   
@@ -186,7 +200,7 @@ class ProjectSlider extends React.Component {
 
 ProjectSlider.propTypes = {
   className: PropTypes.string,
-  projects: PropTypes.object
+  projects: PropTypes.array
 };
 
 export default ProjectSlider
