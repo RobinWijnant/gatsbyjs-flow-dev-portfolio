@@ -7,6 +7,8 @@
   "dependencies": {
     "@emotion/core": "^10.0.16",
     "@emotion/styled": "^10.0.15",
+    "@fika/gatsby-source-cockpit": "^1.1.0",
+    "dotenv": "^8.1.0",
     "gatsby": "^2.14.0",
     "gatsby-background-image": "^0.8.5",
     "gatsby-image": "^2.2.14",

@@ -1,3 +1,7 @@
+// Setup require variables
+require("dotenv").config()
+
+// Favicon icon sizes
 const generateIconSizes = (sizes) => {
   return sizes.map(width => {
     return {
@@ -21,6 +25,16 @@ module.exports = {
       options: {
         name: `content`,
         path: `${__dirname}/content/`,
+      },
+    },
+    {
+      resolve: '@fika/gatsby-source-cockpit',
+      options: {
+        token: process.env.COCKPIT_TOKEN,
+        baseUrl: 'https://cms.robinwijnant.me',
+        locales: ['any'],
+        collections: ['projects'],
+        singletons: ['home']
       },
     },
     `gatsby-transformer-sharp`,
