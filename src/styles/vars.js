@@ -9,6 +9,7 @@ const colors = {
   black: "#000000",
   grey: {
     700: "#616161",
+    300: "#E0E0E0",
   },
   palette: {
     electricBlue: "#8AEEF0",
@@ -17,7 +18,7 @@ const colors = {
     lightGoldenrodYellow: "#F9F5CE",
     CrayolaGold: "#E3CE8B",
     metallicSunburst: "9E7E44",
-  }
+  },
 }
 
 const text = {
@@ -30,5 +31,5 @@ const text = {
 export default {
   spacing: spacing,
   colors: colors,
-  text: text
+  text: text,
 }

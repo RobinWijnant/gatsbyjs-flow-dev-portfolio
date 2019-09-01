@@ -1,10 +1,11 @@
 // @flow
 import * as React from "react"
-import PropTypes from 'prop-types';
 import styled from "@emotion/styled"
+import styleVars from "../styles/vars"
 import ShevronRightImage from "../images/chevron-right.svg"
-import { Link } from "gatsby";
-import type { ProjectListItem } from "../query-parsers/home"
+import { Link } from "gatsby"
+import BackgroundImage from "gatsby-background-image"
+import type { FeaturedProject } from "../query-parsers/home"
 
 const Container = styled.div`
   width: 100%;
@@ -27,7 +28,8 @@ const Arrow = styled.button`
   display: block;
   width: 40px;
   height: 60px;
-  transform: ${props => (props.direction === "left" ? "rotate(180deg)" : "none")};
+  transform: ${props =>
+    props.direction === "left" ? "rotate(180deg)" : "none"};
   opacity: ${props => (props.disabled ? 0.3 : 1)};
   cursor: ${props => (props.disabled ? "auto" : "pointer")};
 
@@ -50,18 +52,22 @@ const ProjectDeck = styled.div`
   width: 100%;
   transition: margin 0.8s ease-in-out;
 `
-const deckMargin = 150;
-const Project = styled(Link)`
+const deckMargin = 150
+const Project = styled(BackgroundImage)`
   text-decoration: none;
   color: inherit;
-  background: #ffffff;
-  border-radius: 30px;
   box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.1);
   padding-bottom: 22%;
   display: inline-block;
   width: 30%;
-  cursor: pointer;
   transition: transform 0.5s ease-out;
+  border-radius: 30px;
+  position: relative;
+
+  &::before,
+  &::after {
+    border-radius: 30px;
+  }
 
   &:hover {
     transform: scale(1.05);
@@ -71,7 +77,7 @@ const Project = styled(Link)`
     margin-left: 5%;
   }
 
-  & + &:nth-of-type(3n+1) {
+  & + &:nth-of-type(3n + 1) {
     margin-left: ${deckMargin}px;
   }
 
@@ -79,11 +85,12 @@ const Project = styled(Link)`
     width: 46%;
     padding-bottom: 32%;
 
-    & + &, & + &:nth-of-type(3n+1) {
+    & + &,
+    & + &:nth-of-type(3n + 1) {
       margin-left: 8%;
     }
 
-    & + &:nth-of-type(2n+1) {
+    & + &:nth-of-type(2n + 1) {
       margin-left: ${deckMargin}px;
     }
   }
@@ -92,7 +99,8 @@ const Project = styled(Link)`
     width: 100%;
     padding-bottom: 70%;
 
-    & + &, & + &:nth-of-type(3n+1) {
+    & + &,
+    & + &:nth-of-type(3n + 1) {
       margin-left: ${deckMargin}px;
     }
   }
@@ -102,9 +110,35 @@ const Project = styled(Link)`
   }
 `
 
+const ProjectLink = styled(Link)`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(
+    204.93deg,
+    rgba(200, 200, 200, 0.1) 20%,
+    white 90%
+  );
+  border-radius: 30px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  text-decoration: none;
+  color: inherit;
+`
+
+const ProjectType = styled.span`
+  border-radius: 999px;
+  padding: 8px 12px;
+  margin: 0 0 6% 7%;
+  border: 1.5px solid ${styleVars.colors.grey[300]};
+`
+
 type Props = {
   className?: string,
-  projects: ProjectListItem[],
+  projects: FeaturedProject[],
 }
 
 type State = {
@@ -117,7 +151,7 @@ class ProjectSlider extends React.Component<Props, State> {
   state = {
     index: 0,
     total: 999,
-    deckOffset: 0
+    deckOffset: 0,
   }
   projectDeckRef: { current: ProjectDeck }
 
@@ -125,39 +159,43 @@ class ProjectSlider extends React.Component<Props, State> {
     super(props)
     this.projectDeckRef = React.createRef<ProjectDeck>()
   }
-  
+
   componentDidMount() {
-    this.setState({total: this.projectDeckRef.current.children.length})
+    this.setState({ total: this.projectDeckRef.current.children.length })
     this.updateDeckOffset(this.state.index)
-    window.addEventListener("resize", () => this.updateDeckOffset(this.state.index))
+    window.addEventListener("resize", () =>
+      this.updateDeckOffset(this.state.index)
+    )
   }
 
   componentWillUnmount() {
-    window.removeEventListener("resize", () => this.updateDeckOffset(this.state.index))
+    window.removeEventListener("resize", () =>
+      this.updateDeckOffset(this.state.index)
+    )
   }
-  
+
   updateDeckOffset(index: number) {
     const deckIndex = Math.floor(index / this.getAmountOfVisibleProjects())
-    let offset =  this.projectDeckRef.current.offsetWidth * deckIndex
+    let offset = this.projectDeckRef.current.offsetWidth * deckIndex
     offset += deckMargin * deckIndex
-    this.setState({deckOffset: offset})
+    this.setState({ deckOffset: offset })
   }
 
   previous() {
     const newIndex = this.state.index - this.getAmountOfVisibleProjects()
     if (newIndex < 0) {
-      this.setState({index: 0})
+      this.setState({ index: 0 })
     }
-    this.setState({index: newIndex})
+    this.setState({ index: newIndex })
     this.updateDeckOffset(newIndex)
   }
-  
+
   next() {
     const newIndex = this.state.index + this.getAmountOfVisibleProjects()
     if (newIndex >= this.state.total) {
-      this.setState({index: this.state.total})
+      this.setState({ index: this.state.total })
     }
-    this.setState({index: newIndex})
+    this.setState({ index: newIndex })
     this.updateDeckOffset(newIndex)
   }
 
@@ -173,34 +211,53 @@ class ProjectSlider extends React.Component<Props, State> {
   }
 
   isNextDisabled(): boolean {
-    return this.state.index + this.getAmountOfVisibleProjects() >= this.state.total
-  }
-  
-  render() {
     return (
-      <Container className={this.props.className}>
-        <Arrow aria-label={"previous"} direction={"left"} disabled={this.isPreviousDisabled()} onClick={this.previous.bind(this)} />
-        <Projects>
-          <ProjectDeck ref={this.projectDeckRef} style={{marginLeft: -this.state.deckOffset + "px"}}>
-            <Project to={"/projects/someLink"} aria-label="Go to project NAME"></Project>
-            <Project to={"/projects/someLink"} aria-label="Go to project NAME"></Project>
-            <Project to={"/projects/someLink"} aria-label="Go to project NAME"></Project>
-            <Project to={"/projects/someLink"} aria-label="Go to project NAME"></Project>
-            <Project to={"/projects/someLink"} aria-label="Go to project NAME"></Project>
-            <Project to={"/projects/someLink"} aria-label="Go to project NAME"></Project>
-            <Project to={"/projects/someLink"} aria-label="Go to project NAME"></Project>
-          </ProjectDeck>
-        </Projects>
-        <Arrow aria-label={"next"} direction={"right"} disabled={this.isNextDisabled()} onClick={this.next.bind(this)} />
-      </Container>
+      this.state.index + this.getAmountOfVisibleProjects() >= this.state.total
     )
   }
 
+  render() {
+    return (
+      <Container className={this.props.className}>
+        <Arrow
+          aria-label={"previous"}
+          direction={"left"}
+          disabled={this.isPreviousDisabled()}
+          onClick={this.previous.bind(this)}
+        />
+        <Projects>
+          <ProjectDeck
+            ref={this.projectDeckRef}
+            style={{ marginLeft: -this.state.deckOffset + "px" }}
+          >
+            {this.props.projects.map(
+              (project: FeaturedProject, index: number) => (
+                <Project
+                  key={index}
+                  tag={"div"}
+                  fluid={project.featuredImage.fluid}
+                  fadeIn={"soft"}
+                >
+                  <ProjectLink
+                    to={`/projects/${project.slug}`}
+                    aria-label={`Go to project: ${project.title}`}
+                  >
+                    <ProjectType>{project.type}</ProjectType>
+                  </ProjectLink>
+                </Project>
+              )
+            )}
+          </ProjectDeck>
+        </Projects>
+        <Arrow
+          aria-label={"next"}
+          direction={"right"}
+          disabled={this.isNextDisabled()}
+          onClick={this.next.bind(this)}
+        />
+      </Container>
+    )
+  }
 }
-
-ProjectSlider.propTypes = {
-  className: PropTypes.string,
-  projects: PropTypes.array
-};
 
 export default ProjectSlider

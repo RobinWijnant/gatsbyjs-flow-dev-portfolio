@@ -12,7 +12,7 @@ import type { HomePageData } from "../query-parsers/home"
 
 export default ({ data }: any) => {
   const pageData: HomePageData = HomeQueryParser.parse(data)
-  
+
   return (
     <Page>
       <SEO title="Home" />
@@ -26,40 +26,44 @@ export default ({ data }: any) => {
 }
 
 export const query = graphql`
-{
-  cockpitHome {
-    banner_image {
-      value {
-        childImageSharp {
-          fluid(maxWidth: 2000, quality: 90) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
-        }
-      }
-    }
-  }
-  allCockpitProjects(filter: {published: {value: {eq: true}}}) {
-    nodes {
-      cockpitId
-      featured_image {
+  {
+    cockpitHome {
+      banner_image {
         value {
           childImageSharp {
-            fluid {
+            fluid(maxWidth: 2000, quality: 90) {
               ...GatsbyImageSharpFluid_withWebp
             }
           }
         }
       }
-      type {
-        value
-      }
-      title {
-        value
-      }
-      date {
-        value
+    }
+    allCockpitProjects(
+      filter: { published: { value: { eq: true } } }
+      sort: { fields: date___value, order: DESC }
+      limit: 6
+    ) {
+      nodes {
+        cockpitId
+        featured_image {
+          value {
+            childImageSharp {
+              fluid {
+                ...GatsbyImageSharpFluid_withWebp
+              }
+            }
+          }
+        }
+        type {
+          value
+        }
+        title {
+          value
+        }
+        date {
+          value
+        }
       }
     }
   }
-}
 `
