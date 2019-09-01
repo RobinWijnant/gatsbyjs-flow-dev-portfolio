@@ -98,6 +98,7 @@ const Project = styled(BackgroundImage)`
   @media (max-width: 800px) {
     width: 100%;
     padding-bottom: 70%;
+    transition-duration: 0.3s;
 
     & + &,
     & + &:nth-of-type(3n + 1) {
