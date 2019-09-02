@@ -3,12 +3,11 @@ import React from "react"
 import styled from "@emotion/styled"
 import styleVars from "../styles/vars"
 import logo from "../images/logo.svg"
+import Wrapper from "./wrapper"
 
-const Wrapper = styled.header`
+const WrapperStyled = styled(Wrapper)`
   width: 100%;
-  max-width: ${styleVars.spacing.maxWidth};
-  margin: 0 auto;
-  box-sizing: border-box;
+  padding: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -31,8 +30,8 @@ const NavLink = styled(Link)`
   font-weight: 500;
 `
 
-const Header = ({className}) => (
-  <Wrapper className={className}>
+const Header = ({ className }) => (
+  <WrapperStyled className={className}>
     <Link to="/">
       <Logo src={logo} alt="Logo Robin Wijnant" />
     </Link>
@@ -46,7 +45,7 @@ const Header = ({className}) => (
         </NavItem>
       </NavList>
     </nav>
-  </Wrapper>
+  </WrapperStyled>
 )
 
 export default Header
