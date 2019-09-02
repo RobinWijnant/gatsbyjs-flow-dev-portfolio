@@ -7,6 +7,7 @@ import Banner from "../components/banner"
 import SectionHeading from "../components/section-heading"
 import ProjectSlider from "../components/project-slider"
 import ShapeWrapper from "../components/shape-wrapper"
+import MyStory from "../components/my-story"
 import HomeQueryParser from "../query-parsers/home"
 import type { HomePageData } from "../query-parsers/home"
 
@@ -21,6 +22,7 @@ export default ({ data }: any) => {
       <ShapeWrapper>
         <ProjectSlider projects={pageData.projects} />
       </ShapeWrapper>
+      <MyStory />
     </Page>
   )
 }
