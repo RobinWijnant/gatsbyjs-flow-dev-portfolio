@@ -35,7 +35,7 @@ const SocialLinks = ({ className }: Props) => (
     />
     <ButtonClipboard
       clipboardText={"robin@wijnant.me"}
-      text={"Email address"}
+      text={"robin@wijnant.me"}
     />
   </Container>
 )

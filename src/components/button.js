@@ -3,15 +3,10 @@ import * as React from "react"
 import styled from "@emotion/styled"
 import styleVars from "../styles/vars"
 
-const Button = styled.button`
-  border: none;
-  outline: none;
-  font: inherit;
-  color: inherit;
+const Button = styled.span`
   background: ${styleVars.colors.white};
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
-  cursor: pointer;
   padding: 15px 20px;
   font-weight: 600;
   display: inline-flex;
