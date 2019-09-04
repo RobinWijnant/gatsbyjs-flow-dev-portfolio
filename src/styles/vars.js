@@ -7,9 +7,11 @@ const spacing = {
 
 const colors = {
   black: "#000000",
+  white: "#FFFFFF",
   grey: {
     700: "#616161",
     300: "#E0E0E0",
+    100: "#F5F5F5",
   },
   palette: {
     electricBlue: "#8AEEF0",

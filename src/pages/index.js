@@ -10,6 +10,7 @@ import ShapeWrapper from "../components/shape-wrapper"
 import MyStory from "../components/my-story"
 import HomeQueryParser from "../query-parsers/home"
 import TightWrapper from "../components/tight-wrapper"
+import SocialLinks from "../components/social-links"
 import type { HomePageData } from "../query-parsers/home"
 
 export default ({ data }: any) => {
@@ -28,6 +29,7 @@ export default ({ data }: any) => {
       <TightWrapper>
         <SectionHeading>This is my story</SectionHeading>
         <MyStory />
+        <SocialLinks />
       </TightWrapper>
     </Page>
   )
