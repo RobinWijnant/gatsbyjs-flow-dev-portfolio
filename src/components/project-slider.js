@@ -2,7 +2,7 @@
 import * as React from "react"
 import styled from "@emotion/styled"
 import styleVars from "../styles/vars"
-import ShevronRightImage from "../images/chevron-right.svg"
+import ShevronRightImage from "../images/icons/chevron-right.svg"
 import { Link } from "gatsby"
 import BackgroundImage from "gatsby-background-image"
 import type { FeaturedProject } from "../query-parsers/home"

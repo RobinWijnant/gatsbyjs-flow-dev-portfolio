@@ -3,8 +3,8 @@ import * as React from "react"
 import styled from "@emotion/styled"
 import ButtonLink from "./button-link"
 import ButtonClipboard from "./button-clipboard"
-import linkedInIcon from "../images/linked-in.png"
-import twitterIcon from "../images/twitter.png"
+import linkedInIcon from "../images/icons/linked-in.png"
+import twitterIcon from "../images/icons/twitter.png"
 
 const Container = styled.div`
   margin: 80px 0;

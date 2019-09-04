@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react"
 import Button from "./button"
-import CopyIcon from "../images/clipboard.svg"
+import CopyIcon from "../images/icons/clipboard.svg"
 
 type Props = {
   className?: string,
