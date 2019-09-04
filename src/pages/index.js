@@ -9,6 +9,7 @@ import ProjectSlider from "../components/project-slider"
 import ShapeWrapper from "../components/shape-wrapper"
 import MyStory from "../components/my-story"
 import HomeQueryParser from "../query-parsers/home"
+import TightWrapper from "../components/tight-wrapper"
 import type { HomePageData } from "../query-parsers/home"
 
 export default ({ data }: any) => {
@@ -18,11 +19,16 @@ export default ({ data }: any) => {
     <Page>
       <SEO title="Home" />
       <Banner image={pageData.bannerImage} />
-      <SectionHeading>Some of my latest work</SectionHeading>
+      <TightWrapper>
+        <SectionHeading>Some of my latest work</SectionHeading>
+      </TightWrapper>
       <ShapeWrapper>
         <ProjectSlider projects={pageData.projects} />
       </ShapeWrapper>
-      <MyStory />
+      <TightWrapper>
+        <SectionHeading>This is my story</SectionHeading>
+        <MyStory />
+      </TightWrapper>
     </Page>
   )
 }
@@ -39,6 +45,16 @@ export const query = graphql`
           }
         }
       }
+      # slogan {
+      #   value
+      # }
+      # my_story {
+      #   value {
+      #     childMarkdownRemark {
+      #       html
+      #     }
+      #   }
+      # }
     }
     allCockpitProjects(
       filter: { published: { value: { eq: true } } }

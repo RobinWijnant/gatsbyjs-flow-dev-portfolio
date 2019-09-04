@@ -2,12 +2,12 @@
 require("dotenv").config()
 
 // Favicon icon sizes
-const generateIconSizes = (sizes) => {
+const generateIconSizes = sizes => {
   return sizes.map(width => {
     return {
-      "src": `favicons/icon-${width}x${width}.png`,
-      "sizes": `${width}x${width}`,
-      "type": "image/png"
+      src: `favicons/icon-${width}x${width}.png`,
+      sizes: `${width}x${width}`,
+      type: "image/png",
     }
   })
 }
@@ -28,13 +28,13 @@ module.exports = {
       },
     },
     {
-      resolve: '@fika/gatsby-source-cockpit',
+      resolve: "@fika/gatsby-source-cockpit",
       options: {
         token: process.env.COCKPIT_TOKEN,
-        baseUrl: 'https://cms.robinwijnant.me',
-        locales: ['any'],
-        collections: ['projects'],
-        singletons: ['home']
+        baseUrl: "https://cms.robinwijnant.me",
+        locales: ["any"],
+        collections: ["projects"],
+        singletons: ["home"],
       },
     },
     `gatsby-transformer-sharp`,
@@ -57,7 +57,7 @@ module.exports = {
         icons: generateIconSizes([48, 72, 96, 144, 192, 256, 384, 512]),
       },
     },
-    'gatsby-plugin-emotion',
+    "gatsby-plugin-emotion",
     {
       resolve: `gatsby-plugin-prefetch-google-fonts`,
       options: {
@@ -69,6 +69,7 @@ module.exports = {
         ],
       },
     },
-    'gatsby-plugin-flow',
+    "gatsby-plugin-flow",
+    "gatsby-transformer-remark",
   ],
 }
