@@ -1,4 +1,5 @@
-import React from "react"
+// @flow
+import * as React from "react"
 import styled from "@emotion/styled"
 import styleVars from "../styles/vars"
 import Wrapper from "./wrapper"
@@ -9,7 +10,12 @@ const Text = styled.h3`
   text-align: center;
 `
 
-const SectionHeading = ({className, children}) => (
+type Props = {
+  className?: string,
+  children?: React.Node,
+}
+
+const SectionHeading = ({ className, children }: Props) => (
   <Wrapper>
     <Text className={className}>{children}</Text>
   </Wrapper>

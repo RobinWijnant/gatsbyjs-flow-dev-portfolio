@@ -1,5 +1,6 @@
+// @flow
+import * as React from "react"
 import { Link } from "gatsby"
-import React from "react"
 import styled from "@emotion/styled"
 import styleVars from "../styles/vars"
 import logo from "../images/logo.svg"
@@ -30,7 +31,11 @@ const NavLink = styled(Link)`
   font-weight: 500;
 `
 
-const Header = ({ className }) => (
+type Props = {
+  className?: string,
+}
+
+const Header = ({ className }: Props) => (
   <WrapperStyled className={className}>
     <Link to="/">
       <Logo src={logo} alt="Logo Robin Wijnant" />

@@ -1,4 +1,5 @@
-import React from "react"
+// @flow
+import * as React from "react"
 import styled from "@emotion/styled"
 
 import svgAnimation from "../images/scroll-suggestion.svg"
@@ -19,7 +20,11 @@ const Svg = styled.img`
   height: 20px;
 `
 
-const Header = ({ className }) => (
+type Props = {
+  className?: string,
+}
+
+const Header = ({ className }: Props) => (
   <Container className={className}>
     <Text>Scroll</Text>
     <Svg src={svgAnimation} alt={"Icon to suggest scrolling behavior"} />

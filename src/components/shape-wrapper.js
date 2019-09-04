@@ -1,4 +1,5 @@
-import React from "react"
+// @flow
+import * as React from "react"
 import styled from "@emotion/styled"
 import Wrapper from "./wrapper"
 import GreyPolygonImage from "../images/shapes/polygon-grey.svg"
@@ -89,13 +90,30 @@ const DottedCurve = styled.img`
   }
 `
 
-const ShapeWrapper = ({className, children}) => (
+type Props = {
+  className?: string,
+  children?: React.Node,
+}
+
+const ShapeWrapper = ({ className, children }: Props) => (
   <Container className={className}>
     <WrapperStyled>
-      <GreyPolygon src={GreyPolygonImage} alt={"Grey polygon background shape"} />
-      <YellowPolygon src={YellowPolygonImage} alt={"Yellow polygon background shape"} />
-      <DottedCurve src={DottedCurveImage} alt={"Dotted curve background shape"} />
-      <BluePolygon src={BluePolygonImage} alt={"Blue polygon background shape"} />
+      <GreyPolygon
+        src={GreyPolygonImage}
+        alt={"Grey polygon background shape"}
+      />
+      <YellowPolygon
+        src={YellowPolygonImage}
+        alt={"Yellow polygon background shape"}
+      />
+      <DottedCurve
+        src={DottedCurveImage}
+        alt={"Dotted curve background shape"}
+      />
+      <BluePolygon
+        src={BluePolygonImage}
+        alt={"Blue polygon background shape"}
+      />
       {children}
     </WrapperStyled>
   </Container>

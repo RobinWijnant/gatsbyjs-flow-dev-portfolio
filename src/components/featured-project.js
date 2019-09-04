@@ -1,6 +1,6 @@
 // @flow
+import * as React from "react"
 import { Link } from "gatsby"
-import React from "react"
 import styled from "@emotion/styled"
 import styleVars from "../styles/vars"
 import logo from "../images/logo.svg"
@@ -28,9 +28,7 @@ type Props = {
 }
 
 const Project = ({ className, to, width, type, image }: Props) => (
-  <Container className={className} width={width} to={to}>
-    
-  </Container>
+  <Container className={className} width={width} to={to}></Container>
 )
 
 export default Project

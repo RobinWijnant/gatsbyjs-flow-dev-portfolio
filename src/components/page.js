@@ -1,4 +1,5 @@
-import React from "react"
+// @flow
+import * as React from "react"
 import styleVars from "../styles/vars"
 import { Global, css } from "@emotion/core"
 
@@ -10,7 +11,7 @@ const styles = css`
     font-size: ${styleVars.text.size};
     color: ${styleVars.colors.grey[700]};
   }
-  
+
   h2 {
     color: ${styleVars.colors.black};
     font-size: 26px;
@@ -21,7 +22,11 @@ const styles = css`
   }
 `
 
-const Page = ({children}) => (
+type Props = {
+  children?: React.Node,
+}
+
+const Page = ({ children }: Props) => (
   <>
     <Global styles={styles} />
     {children}

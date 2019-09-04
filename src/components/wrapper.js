@@ -1,4 +1,5 @@
-import React from "react"
+// @flow
+import * as React from "react"
 import styled from "@emotion/styled"
 import styleVars from "../styles/vars"
 
@@ -9,10 +10,13 @@ const Container = styled.div`
   box-sizing: border-box;
 `
 
-const Wrapper = ({className, children}) => (
-  <Container className={className}>
-    {children}
-  </Container>
+type Props = {
+  className?: string,
+  children?: React.Node,
+}
+
+const Wrapper = ({ className, children }: Props) => (
+  <Container className={className}>{children}</Container>
 )
 
 export default Wrapper

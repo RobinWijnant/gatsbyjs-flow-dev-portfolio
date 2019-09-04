@@ -1,5 +1,5 @@
-import React from "react"
-import PropTypes from 'prop-types';
+// @flow
+import * as React from "react"
 import styled from "@emotion/styled"
 import styleVars from "../styles/vars"
 import Header from "./header"
@@ -41,25 +41,38 @@ const BadgeShape = styled.div`
 const ScrollSuggestionStyled = styled(ScrollSuggestion)`
   margin: 0 0 20px 4%;
   transition: opacity 0.5s ease-in 1s;
-  opacity: ${props => props.show ? 1 : 0};
+  opacity: ${props => (props.show ? 1 : 0)};
 
   @media (max-width: 600px) {
     margin-left: 0;
   }
 `
 
-class Banner extends React.Component {
+type Props = {
+  className?: string,
+  image: any,
+}
+
+type State = {
+  sloganLoaded: boolean,
+}
+
+class Banner extends React.Component<Props, State> {
   state = {
-    sloganLoaded: false
+    sloganLoaded: false,
   }
 
   render() {
     return (
       <div className={this.props.className}>
-        <BackgroundImage tag={"div"} fluid={this.props.image.fluid} fadeIn={"soft"}>
+        <BackgroundImage
+          tag={"div"}
+          fluid={this.props.image.fluid}
+          fadeIn={"soft"}
+        >
           <BadgeShape>
             <Header />
-            <Slogan onLoaded={() => this.setState({sloganLoaded: true})} />
+            <Slogan onLoaded={() => this.setState({ sloganLoaded: true })} />
             <ScrollSuggestionStyled show={this.state.sloganLoaded} />
           </BadgeShape>
           <CroppingShape />
@@ -68,10 +81,5 @@ class Banner extends React.Component {
     )
   }
 }
-
-Banner.propTypes = {
-  className: PropTypes.string,
-  image: PropTypes.object
-};
 
 export default Banner
