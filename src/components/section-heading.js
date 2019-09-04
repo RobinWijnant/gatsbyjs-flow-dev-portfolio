@@ -16,9 +16,7 @@ type Props = {
 }
 
 const SectionHeading = ({ className, children }: Props) => (
-  <Wrapper>
-    <Text className={className}>{children}</Text>
-  </Wrapper>
+  <Text className={className}>{children}</Text>
 )
 
 export default SectionHeading
