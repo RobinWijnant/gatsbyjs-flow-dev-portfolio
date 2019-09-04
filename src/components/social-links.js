@@ -25,13 +25,13 @@ const SocialLinks = ({ className }: Props) => (
       to={"https://www.linkedin.com/in/robin-wijnant"}
       text={"Robin Wijnant"}
       icon={linkedInIcon}
-      iconAlt={"Link to Linked in"}
+      iconAlt={"Linked in icon"}
     />
     <ButtonLink
       to={"https://twitter.com/robinwijnant"}
       text={"@robinwijnant"}
       icon={twitterIcon}
-      iconAlt={"Link to Twitter"}
+      iconAlt={"Twitter icon"}
     />
     <ButtonClipboard
       clipboardText={"robin@wijnant.me"}
