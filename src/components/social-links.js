@@ -13,6 +13,17 @@ const Container = styled.div`
   & > * + * {
     margin-left: 30px;
   }
+
+  @media (max-width: 735px) {
+    & > * + * {
+      margin-left: 0;
+    }
+
+    & > * {
+      display: table;
+      margin: 40px auto;
+    }
+  }
 `
 
 type Props = {
@@ -27,15 +38,15 @@ const SocialLinks = ({ className }: Props) => (
       icon={linkedInIcon}
       iconAlt={"Linked in icon"}
     />
+    <ButtonClipboard
+      clipboardText={"robin@wijnant.me"}
+      text={"robin@wijnant.me"}
+    />
     <ButtonLink
       to={"https://twitter.com/robinwijnant"}
       text={"@robinwijnant"}
       icon={twitterIcon}
       iconAlt={"Twitter icon"}
-    />
-    <ButtonClipboard
-      clipboardText={"robin@wijnant.me"}
-      text={"robin@wijnant.me"}
     />
   </Container>
 )

@@ -2,6 +2,7 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Page from "../components/page"
+import type { HomePageData } from "../query-parsers/home"
 import SEO from "../components/seo"
 import Banner from "../components/banner"
 import SectionHeading from "../components/section-heading"
@@ -11,7 +12,7 @@ import MyStory from "../components/my-story"
 import HomeQueryParser from "../query-parsers/home"
 import TightWrapper from "../components/tight-wrapper"
 import SocialLinks from "../components/social-links"
-import type { HomePageData } from "../query-parsers/home"
+import Wrapper from "../components/wrapper"
 
 export default ({ data }: any) => {
   const pageData: HomePageData = HomeQueryParser.parse(data)
@@ -29,8 +30,10 @@ export default ({ data }: any) => {
       <TightWrapper>
         <SectionHeading>This is my story</SectionHeading>
         <MyStory />
-        <SocialLinks />
       </TightWrapper>
+      <Wrapper>
+        <SocialLinks />
+      </Wrapper>
     </Page>
   )
 }
