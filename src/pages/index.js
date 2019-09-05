@@ -44,7 +44,7 @@ export const query = graphql`
       banner_image {
         value {
           childImageSharp {
-            fluid(maxWidth: 2000, quality: 90) {
+            fluid(maxWidth: 2000) {
               ...GatsbyImageSharpFluid_withWebp
             }
           }
@@ -71,7 +71,7 @@ export const query = graphql`
         featured_image {
           value {
             childImageSharp {
-              fluid(maxWidth: 500, quality: 90) {
+              fluid(maxWidth: 500) {
                 ...GatsbyImageSharpFluid_withWebp
               }
             }
