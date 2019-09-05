@@ -109,7 +109,6 @@ const Project = styled(BackgroundImage)`
     box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.06);
   }
 `
-
 const ProjectLink = styled(Link)`
   position: absolute;
   top: 0;
@@ -128,7 +127,6 @@ const ProjectLink = styled(Link)`
   text-decoration: none;
   color: inherit;
 `
-
 const ProjectType = styled.span`
   border-radius: 999px;
   padding: 8px 12px;

@@ -7,12 +7,10 @@ const Container = styled.div`
   text-align: center;
   margin: 0;
 `
-
 const Text = styled.p`
   color: ${styleVars.colors.black};
   line-height: 180%;
 `
-
 const Quote = styled.blockquote`
   font-size: 20px;
   margin: calc(${styleVars.spacing.sectionMargin} * 2 / 3) auto;

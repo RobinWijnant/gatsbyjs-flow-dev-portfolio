@@ -6,12 +6,10 @@ import styleVars from "../styles/vars"
 
 const Container = styled.div`
   display: flex;
-  margin: ${styleVars.spacing.sectionMargin} 0 40px;
+  margin: ${styleVars.spacing.sectionMargin} 0
+    calc(${styleVars.spacing.sectionMargin} / 5 * 3);
 `
-
 const ContentBlock = styled.div`
-  margin-bottom: 40px;
-
   &.recent-projects {
     flex-grow: 1;
   }
@@ -30,19 +28,16 @@ const ContentBlock = styled.div`
     }
   }
 `
-
 const Title = styled.span`
   font-weight: 500;
   margin-bottom: 20px;
   display: block;
 `
-
 const Listing = styled.ul`
   margin: 0;
   padding: 0;
   list-style: none;
 `
-
 const Item = styled.li`
   font-size: 13px;
   display: flex;
@@ -51,7 +46,6 @@ const Item = styled.li`
     margin-top: 15px;
   }
 `
-
 const ItemLink = styled(Link)`
   color: inherit;
   text-decoration: none;
@@ -60,7 +54,6 @@ const ItemLink = styled(Link)`
     text-decoration: underline;
   }
 `
-
 const Color = styled.div`
   background-color: ${props => props.hex};
   border-radius: 50%;
@@ -68,7 +61,6 @@ const Color = styled.div`
   height: 14px;
   margin-right: 10px;
 `
-
 const Font = styled.span`
   &::before {
     content: "Aa";

@@ -23,7 +23,6 @@ const Button = styled.span`
     background: ${styleVars.colors.grey[100]};
   }
 `
-
 const Icon = styled.img`
   height: 15px;
   margin-right: 10px;
