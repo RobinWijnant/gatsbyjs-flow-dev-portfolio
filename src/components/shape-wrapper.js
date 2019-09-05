@@ -9,8 +9,12 @@ import DottedCurveImage from "../images/shapes/curve-dotted.svg"
 
 const Container = styled.div`
   width: 100%;
-  padding: 50px 0 80px;
+  padding: 50px 0 50px;
   overflow: hidden;
+
+  @media (max-width: 500px) {
+    padding-bottom: 80px;
+  }
 `
 const WrapperStyled = styled(Wrapper)`
   position: relative;

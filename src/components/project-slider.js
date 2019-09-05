@@ -5,7 +5,6 @@ import styleVars from "../styles/vars"
 import ShevronRightImage from "../images/icons/chevron-right.svg"
 import { Link } from "gatsby"
 import BackgroundImage from "gatsby-background-image"
-import type { FeaturedProject } from "../query-parsers/home"
 
 const Container = styled.div`
   width: 100%;
@@ -137,6 +136,13 @@ const ProjectType = styled.span`
   border: 1.5px solid ${styleVars.colors.grey[300]};
 `
 
+type FeaturedProject = {
+  title: string,
+  url: string,
+  type: string,
+  featuredImage: any,
+}
+
 type Props = {
   className?: string,
   projects: FeaturedProject[],
@@ -240,7 +246,7 @@ class ProjectSlider extends React.Component<Props, State> {
                   fadeIn={"soft"}
                 >
                   <ProjectLink
-                    to={`/projects/${project.slug}`}
+                    to={project.url}
                     aria-label={`Go to project: ${project.title}`}
                   >
                     <ProjectType>{project.type}</ProjectType>

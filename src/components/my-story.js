@@ -15,7 +15,7 @@ const Text = styled.p`
 
 const Quote = styled.blockquote`
   font-size: 20px;
-  margin: 80px auto;
+  margin: calc(${styleVars.spacing.sectionMargin} * 2 / 3) auto;
   position: relative;
   display: table;
 

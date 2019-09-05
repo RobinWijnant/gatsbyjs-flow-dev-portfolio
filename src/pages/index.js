@@ -13,6 +13,7 @@ import HomeQueryParser from "../query-parsers/home"
 import TightWrapper from "../components/tight-wrapper"
 import SocialLinks from "../components/social-links"
 import Wrapper from "../components/wrapper"
+import Footer from "../components/footer"
 
 export default ({ data }: any) => {
   const pageData: HomePageData = HomeQueryParser.parse(data)
@@ -33,6 +34,7 @@ export default ({ data }: any) => {
       </TightWrapper>
       <Wrapper>
         <SocialLinks />
+        <Footer projects={pageData.projects.slice(0, 3)} />
       </Wrapper>
     </Page>
   )
@@ -76,6 +78,9 @@ export const query = graphql`
               }
             }
           }
+        }
+        brand {
+          value
         }
         type {
           value

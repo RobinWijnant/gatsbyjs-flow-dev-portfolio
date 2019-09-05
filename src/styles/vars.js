@@ -13,14 +13,8 @@ const colors = {
     300: "#E0E0E0",
     100: "#F5F5F5",
   },
-  palette: {
-    electricBlue: "#8AEEF0",
-    water: "#8AEEF0",
-    cosmicLatte: "#F9F9EB",
-    lightGoldenrodYellow: "#F9F5CE",
-    CrayolaGold: "#E3CE8B",
-    metallicSunburst: "9E7E44",
-  },
+  blue: "#8AEEF0",
+  yellow: "#EEF08D",
 }
 
 const text = {

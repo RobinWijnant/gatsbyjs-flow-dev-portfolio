@@ -20,7 +20,7 @@ const H2 = styled.h2`
   }
 `
 const cursorStyles = css`
-  color: ${styleVars.colors.palette.CrayolaGold};
+  color: ${styleVars.colors.grey[700]};
 `
 
 type Props = {

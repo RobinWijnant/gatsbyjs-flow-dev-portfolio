@@ -14,7 +14,7 @@ const generateIconSizes = sizes => {
 
 module.exports = {
   siteMetadata: {
-    title: `Robin Wijnant`,
+    title: `Robin Wijnant Dev portfolio`,
     description: `The dev portfolio of Robin Wijnant. Find out more about me and the projects I have worked on. Links to code on GitHub provided.`,
     author: `@robinwijnant`,
   },

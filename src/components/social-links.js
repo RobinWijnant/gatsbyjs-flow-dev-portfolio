@@ -11,7 +11,7 @@ const Container = styled.div`
   text-align: center;
 
   & > * + * {
-    margin-left: 30px;
+    margin-left: 25px;
   }
 
   @media (max-width: 735px) {
