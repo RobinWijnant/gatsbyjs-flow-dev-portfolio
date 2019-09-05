@@ -4,6 +4,7 @@ import styled from "@emotion/styled"
 import styleVars from "../styles/vars"
 
 const Button = styled.span`
+  cursor: pointer;
   background: ${styleVars.colors.white};
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
