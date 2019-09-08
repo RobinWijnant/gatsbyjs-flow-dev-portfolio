@@ -21,7 +21,7 @@ const Container = styled.div`
 
     & > * {
       display: table;
-      margin: 30px auto;
+      margin: 20px auto;
     }
   }
 `
