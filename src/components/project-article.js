@@ -149,7 +149,7 @@ const ProjectArticle = ({ className, project }: Props) => (
           <Dd>{project.techStack.join(", ")}</Dd>
         </PropertyList>
         <DescriptionBlock>
-          <Dt>Challenge</Dt>
+          <Dt>The challenge</Dt>
           <Dd>{project.description}</Dd>
         </DescriptionBlock>
       </ProjectInfo>
