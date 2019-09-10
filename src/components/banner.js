@@ -34,7 +34,6 @@ const BadgeShape = styled.div`
   @media (max-width: 1000px) {
     width: 100%;
     background-size: 110%;
-    padding-top: 40px;
     margin-bottom: 20px;
   }
 `

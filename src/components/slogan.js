@@ -15,7 +15,7 @@ const H2 = styled.h2`
 
   @media (max-width: 600px) {
     font-size: 20px;
-    margin: 60px 0;
+    margin: 20px 0 60px;
     min-height: 65px;
   }
 `
