@@ -15,6 +15,11 @@ const UpperMeta = styled.span`
   text-transform: uppercase;
   letter-spacing: 1.3px;
   font-size: 13px;
+
+  @media (max-width: 600px) {
+    letter-spacing: 0.6px;
+    font-size: 11px;
+  }
 `
 const Brand = styled.span`
   &::before {
@@ -26,6 +31,11 @@ const Brand = styled.span`
 const Title = styled.h1`
   color: ${styleVars.colors.black};
   margin: 30px 0;
+
+  @media (max-width: 600px) {
+    font-size: 20px;
+    margin-top: 20px;
+  }
 `
 const FeaturedImage = styled(BackgroundImage)`
   width: inherit;
