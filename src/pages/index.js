@@ -52,16 +52,6 @@ export const query = graphql`
           }
         }
       }
-      # slogan {
-      #   value
-      # }
-      # my_story {
-      #   value {
-      #     childMarkdownRemark {
-      #       html
-      #     }
-      #   }
-      # }
     }
     allCockpitProjects(
       filter: { published: { value: { eq: true } } }
@@ -86,9 +76,6 @@ export const query = graphql`
           value
         }
         title {
-          value
-        }
-        date {
           value
         }
       }
