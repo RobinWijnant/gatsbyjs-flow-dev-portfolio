@@ -59,6 +59,7 @@ const PropertyList = styled.dl`
     display: grid;
     grid-template-rows: auto auto;
     grid-auto-flow: column;
+    grid-column-gap: 10%;
   }
 `
 const Dt = styled.dt`
