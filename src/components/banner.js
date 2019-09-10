@@ -28,7 +28,7 @@ const BadgeShape = styled.div`
   background-image: url(${badgeShapeFile});
   background-size: 100% auto;
   background-position: center bottom;
-  padding: 60px ${styleVars.spacing.sideMargin} 20px;
+  padding: 0 ${styleVars.spacing.sideMargin} 20px;
   box-sizing: border-box;
 
   @media (max-width: 1000px) {

@@ -6,7 +6,7 @@ import { css } from "@emotion/core"
 import Typing from "react-typing-animation"
 
 const H2 = styled.h2`
-  margin: 12% 0;
+  margin: calc(12% - 60px) 0 12%;
   font-size: 26px;
   font-weight: 700;
   line-height: 150%;

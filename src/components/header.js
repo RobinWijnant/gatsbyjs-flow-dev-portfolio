@@ -12,6 +12,7 @@ const WrapperStyled = styled(Wrapper)`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 60px 0;
 `
 const Logo = styled.img`
   width: 25px;

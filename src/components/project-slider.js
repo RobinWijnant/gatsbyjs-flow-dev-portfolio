@@ -158,28 +158,26 @@ class ProjectSlider extends React.Component<Props, State> {
     total: 999,
     deckOffset: 0,
   }
+  updateDeckOffsetBinded: () => {}
   projectDeckRef: { current: ProjectDeck }
 
   constructor(props: Props) {
     super(props)
     this.projectDeckRef = React.createRef<ProjectDeck>()
+    this.updateDeckOffsetBinded = this.updateDeckOffset.bind(this)
   }
 
   componentDidMount() {
     this.setState({ total: this.projectDeckRef.current.children.length })
     this.updateDeckOffset(this.state.index)
-    window.addEventListener("resize", () =>
-      this.updateDeckOffset(this.state.index)
-    )
+    window.addEventListener("resize", this.updateDeckOffsetBinded)
   }
 
   componentWillUnmount() {
-    window.removeEventListener("resize", () =>
-      this.updateDeckOffset(this.state.index)
-    )
+    window.removeEventListener("resize", this.updateDeckOffsetBinded)
   }
 
-  updateDeckOffset(index: number) {
+  updateDeckOffset(index: number = this.state.index) {
     const deckIndex = Math.floor(index / this.getAmountOfVisibleProjects())
     let offset = this.projectDeckRef.current.offsetWidth * deckIndex
     offset += deckMargin * deckIndex

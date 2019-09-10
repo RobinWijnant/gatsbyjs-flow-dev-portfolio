@@ -6,14 +6,19 @@ import SEO from "../components/seo"
 import ProjectQueryParser from "../query-parsers/project"
 import type { ProjectPageData } from "../query-parsers/project"
 import TightWrapper from "../components/tight-wrapper"
+import Wrapper from "../components/wrapper"
+import Header from "../components/header"
+import ProjectArticle from "../components/project-article"
 
 export default ({ data }: any) => {
   const pageData: ProjectPageData = ProjectQueryParser.parse(data)
-  console.log(pageData)
   return (
     <Page>
       <SEO title="Project" />
-      {/* <ProjectArticle project={pageData} /> */}
+      <Wrapper>
+        <Header />
+      </Wrapper>
+      <ProjectArticle project={pageData} />
     </Page>
   )
 }
