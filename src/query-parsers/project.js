@@ -1,5 +1,4 @@
 // @flow
-import slugify from "slugify"
 
 export type ProjectPageData = {
   brand: string,
