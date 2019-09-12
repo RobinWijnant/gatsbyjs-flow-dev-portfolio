@@ -5,6 +5,7 @@ import styleVars from "../styles/vars"
 import TightWrapper from "./tight-wrapper"
 import Wrapper from "./wrapper"
 import BackgroundImage from "gatsby-background-image"
+import Img from "gatsby-image"
 import featuredImageFrame from "../images/featured-image-frame.svg"
 
 const Article = styled.article`
@@ -57,6 +58,7 @@ const Frame = styled.img`
 const ProjectInfo = styled.div`
   display: flex;
   justify-content: space-between;
+  margin: 80px 0;
 
   @media (max-width: 500px) {
     flex-direction: column;
@@ -99,6 +101,11 @@ const DescriptionBlock = styled(PropertyList)`
     margin: 50px 0 0;
   }
 `
+const ResultImage = styled(Img)`
+  border-radius: 20px;
+  margin: 50px auto;
+  max-width: ${props => `calc(${props.maxWidth}px / 5 * 4)`};
+`
 
 type Project = {
   brand: string,
@@ -108,7 +115,7 @@ type Project = {
   date: string,
   techStack: string[],
   description: string,
-  resultImages?: any,
+  resultImages?: any[],
   resultTitle?: string,
   resultText?: string,
 }
@@ -153,6 +160,17 @@ const ProjectArticle = ({ className, project }: Props) => (
           <Dd>{project.description}</Dd>
         </DescriptionBlock>
       </ProjectInfo>
+      {project.resultImages &&
+        project.resultImages.map((image: any, index: number) => {
+          return (
+            <ResultImage
+              key={index}
+              fluid={image.fluid}
+              maxWidth={image.fluid.presentationWidth}
+              alt={"Extra result image of this project"}
+            />
+          )
+        })}
     </TightWrapper>
   </Article>
 )

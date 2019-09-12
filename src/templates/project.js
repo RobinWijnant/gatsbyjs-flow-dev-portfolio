@@ -3,21 +3,37 @@ import React from "react"
 import { graphql } from "gatsby"
 import Page from "../components/page"
 import SEO from "../components/seo"
-import ProjectQueryParser from "../query-parsers/project"
-import type { ProjectPageData } from "../query-parsers/project"
+import DetailedProjectParser from "../query-parsers/detailed-project"
+import type { DetailedProject } from "../query-parsers/detailed-project"
+import FooterProjectParser from "../query-parsers/footer-project"
+import type { FooterProject } from "../query-parsers/footer-project"
 import Wrapper from "../components/wrapper"
 import Header from "../components/header"
+import Footer from "../components/footer"
 import ProjectArticle from "../components/project-article"
 
+type ProjectPageData = {
+  detailedProject: DetailedProject,
+  footerProjects: FooterProject[],
+}
+
 export default ({ data }: any) => {
-  const pageData: ProjectPageData = ProjectQueryParser.parse(data)
+  const pageData: ProjectPageData = {
+    detailedProject: DetailedProjectParser.parse(data.cockpitProjects),
+    footerProjects: data.allCockpitProjects.nodes.map(node =>
+      FooterProjectParser.parse(node)
+    ),
+  }
   return (
     <Page>
       <SEO title="Project" />
       <Wrapper>
         <Header />
       </Wrapper>
-      <ProjectArticle project={pageData} />
+      <ProjectArticle project={pageData.detailedProject} />
+      <Wrapper>
+        <Footer projects={pageData.footerProjects} />
+      </Wrapper>
     </Page>
   )
 }
@@ -62,6 +78,7 @@ export const query = graphql`
           childImageSharp {
             fluid(maxWidth: 1500) {
               ...GatsbyImageSharpFluid_withWebp
+              presentationWidth
             }
           }
         }
@@ -78,6 +95,17 @@ export const query = graphql`
       }
       tech_stack {
         value
+      }
+    }
+    allCockpitProjects(limit: 3) {
+      nodes {
+        cockpitId
+        brand {
+          value
+        }
+        title {
+          value
+        }
       }
     }
   }

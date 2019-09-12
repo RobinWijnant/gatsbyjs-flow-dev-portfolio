@@ -1,6 +1,6 @@
 // @flow
 
-export type ProjectPageData = {
+export type DetailedProject = {
   brand: string,
   title: string,
   featuredImage: any,
@@ -13,9 +13,8 @@ export type ProjectPageData = {
   resultText?: string,
 }
 
-const parse = (data: any): ProjectPageData => {
-  const node: any = data.cockpitProjects
-  const parsed: ProjectPageData = {
+const parse = (node: any): DetailedProject => {
+  const parsed: DetailedProject = {
     brand: node.brand.value,
     title: node.title.value,
     featuredImage: node.featured_image.value.childImageSharp,
@@ -25,7 +24,9 @@ const parse = (data: any): ProjectPageData => {
     description: node.description.value,
   }
   if (node.result_images) {
-    parsed.resultImages = node.result_images.value
+    parsed.resultImages = node.result_images.value.map(
+      image => image.childImageSharp
+    )
   }
   if (node.result_text_block) {
     parsed.resultTitle = node.result_text_block.value.title.value
