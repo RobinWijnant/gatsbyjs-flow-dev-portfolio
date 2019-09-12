@@ -106,6 +106,9 @@ const ResultImage = styled(Img)`
   margin: 50px auto;
   max-width: ${props => `calc(${props.maxWidth}px / 5 * 4)`};
 `
+const ResultTextBlock = styled(PropertyList)`
+  margin: 80px 0;
+`
 
 type Project = {
   brand: string,
@@ -171,6 +174,12 @@ const ProjectArticle = ({ className, project }: Props) => (
             />
           )
         })}
+      {project.resultText && (
+        <ResultTextBlock>
+          {project.resultTitle && <Dt>{project.resultTitle}</Dt>}
+          <Dd>{project.resultText}</Dd>
+        </ResultTextBlock>
+      )}
     </TightWrapper>
   </Article>
 )
