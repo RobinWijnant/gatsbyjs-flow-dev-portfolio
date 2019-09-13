@@ -2,8 +2,8 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Page from "../components/page"
-import RecentProjectParser from "../query-parsers/recent-project"
-import type { RecentProject } from "../query-parsers/recent-project"
+import FeaturedProjectParser from "../query-parsers/featured-project"
+import type { FeaturedProject } from "../query-parsers/featured-project"
 import FooterProjectParser from "../query-parsers/footer-project"
 import type { FooterProject } from "../query-parsers/footer-project"
 import SEO from "../components/seo"
@@ -19,7 +19,7 @@ import Footer from "../components/footer"
 
 type HomePageData = {
   bannerImage: any,
-  recentProjects: RecentProject[],
+  recentProjects: FeaturedProject[],
   footerProjects: FooterProject[],
 }
 
@@ -27,7 +27,7 @@ export default ({ data }: any) => {
   const pageData: HomePageData = {
     bannerImage: data.cockpitHome.banner_image.value.childImageSharp,
     recentProjects: data.allCockpitProjects.nodes.map(node =>
-      RecentProjectParser.parse(node)
+      FeaturedProjectParser.parse(node)
     ),
     footerProjects: data.allCockpitProjects.nodes
       .slice(0, 3)

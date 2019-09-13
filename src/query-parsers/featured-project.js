@@ -1,14 +1,14 @@
 // @flow
 import slugify from "slugify"
 
-export type RecentProject = {
+export type FeaturedProject = {
   title: string,
   url: string,
   type: string,
   featuredImage: any,
 }
 
-const parse = (node: any): RecentProject => {
+const parse = (node: any): FeaturedProject => {
   return {
     title: node.title.value,
     url: `/projects/${node.cockpitId}-${slugify(node.title.value)}`,

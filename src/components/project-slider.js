@@ -5,6 +5,7 @@ import styleVars from "../styles/vars"
 import ShevronRightImage from "../images/icons/chevron-right.svg"
 import { Link } from "gatsby"
 import BackgroundImage from "gatsby-background-image"
+import type { FeaturedProject } from "../query-parsers/featured-project"
 
 const Container = styled.div`
   width: 100%;
@@ -133,13 +134,6 @@ const ProjectType = styled.span`
   margin: 0 0 6% 7%;
   border: 1.5px solid ${styleVars.colors.grey[300]};
 `
-
-type FeaturedProject = {
-  title: string,
-  url: string,
-  type: string,
-  featuredImage: any,
-}
 
 type Props = {
   className?: string,

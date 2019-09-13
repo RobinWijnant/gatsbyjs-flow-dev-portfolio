@@ -7,6 +7,7 @@ import Wrapper from "./wrapper"
 import BackgroundImage from "gatsby-background-image"
 import Img from "gatsby-image"
 import featuredImageFrame from "../images/featured-image-frame.svg"
+import type { DetailedProject } from "../query-parsers/detailed-project"
 
 const Article = styled.article`
   margin-top: 40px;
@@ -110,22 +111,9 @@ const ResultTextBlock = styled(PropertyList)`
   margin: 80px 0;
 `
 
-type Project = {
-  brand: string,
-  title: string,
-  featuredImage: any,
-  type: string,
-  date: string,
-  techStack: string[],
-  description: string,
-  resultImages?: any[],
-  resultTitle?: string,
-  resultText?: string,
-}
-
 type Props = {
   className?: string,
-  project: Project,
+  project: DetailedProject,
 }
 
 const ProjectArticle = ({ className, project }: Props) => (

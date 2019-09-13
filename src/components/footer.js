@@ -3,6 +3,7 @@ import * as React from "react"
 import { Link } from "gatsby"
 import styled from "@emotion/styled"
 import styleVars from "../styles/vars"
+import type { FooterProject } from "../query-parsers/footer-project"
 
 const Container = styled.div`
   display: flex;
@@ -69,14 +70,9 @@ const Font = styled.span`
   }
 `
 
-type RecentProject = {
-  brand: string,
-  url: string,
-}
-
 type Props = {
   className?: string,
-  projects: RecentProject[],
+  projects: FooterProject[],
 }
 
 const Footer = ({ className, projects }: Props) => (
@@ -95,7 +91,7 @@ const Footer = ({ className, projects }: Props) => (
     <ContentBlock className={"recent-projects"}>
       <Title>Recent projects</Title>
       <Listing>
-        {projects.map((project: RecentProject, index: number) => (
+        {projects.map((project: FooterProject, index: number) => (
           <Item key={index}>
             <ItemLink to={project.url}>{project.brand}</ItemLink>
           </Item>
