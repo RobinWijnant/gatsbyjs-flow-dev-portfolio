@@ -19,6 +19,7 @@ const TopContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 30px 0 -20px;
 `
 
 type Props = {
@@ -30,7 +31,7 @@ type ProjectsPageData = {
   footerProjects: FooterProject[],
 }
 
-export default class Projects extends React.Component<Props, State> {
+export default class Projects extends React.Component<Props> {
   onFilter(types: string[]) {}
 
   render() {

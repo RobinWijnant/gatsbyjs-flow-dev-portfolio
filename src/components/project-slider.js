@@ -6,6 +6,8 @@ import ShevronRightImage from "../images/icons/chevron-right.svg"
 import { Link } from "gatsby"
 import BackgroundImage from "gatsby-background-image"
 import type { FeaturedProject } from "../query-parsers/featured-project"
+import LinkWrapper from "./link-wrapper"
+import ProjectType from "./project-type"
 
 const Container = styled.div`
   width: 100%;
@@ -110,7 +112,7 @@ const Project = styled(BackgroundImage)`
     box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.06);
   }
 `
-const ProjectLink = styled(Link)`
+const ProjectLink = styled(LinkWrapper)`
   position: absolute;
   top: 0;
   bottom: 0;
@@ -125,14 +127,9 @@ const ProjectLink = styled(Link)`
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;
-  text-decoration: none;
-  color: inherit;
 `
-const ProjectType = styled.span`
-  border-radius: 999px;
-  padding: 8px 12px;
+const ProjectTypeStyled = styled(ProjectType)`
   margin: 0 0 6% 7%;
-  border: 1.5px solid ${styleVars.colors.grey[300]};
 `
 
 type Props = {
@@ -239,7 +236,7 @@ class ProjectSlider extends React.Component<Props, State> {
                     to={project.url}
                     aria-label={`Go to project: ${project.title}`}
                   >
-                    <ProjectType>{project.type}</ProjectType>
+                    <ProjectTypeStyled>{project.type}</ProjectTypeStyled>
                   </ProjectLink>
                 </Project>
               )

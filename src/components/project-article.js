@@ -4,9 +4,8 @@ import styled from "@emotion/styled"
 import styleVars from "../styles/vars"
 import TightWrapper from "./tight-wrapper"
 import Wrapper from "./wrapper"
-import BackgroundImage from "gatsby-background-image"
 import Img from "gatsby-image"
-import featuredImageFrame from "../images/featured-image-frame.svg"
+import ShapedImage from "./shaped-image"
 import type { DetailedProject } from "../query-parsers/detailed-project"
 
 const Article = styled.article`
@@ -39,22 +38,8 @@ const Title = styled.h1`
     margin-top: 20px;
   }
 `
-const FeaturedImage = styled(BackgroundImage)`
-  width: inherit;
-  padding-bottom: 60%;
+const ShapedImageStyled = styled(ShapedImage)`
   margin: 80px 0;
-  display: flex;
-  position: relative;
-`
-const Frame = styled.img`
-  width: 102%;
-  height: 102%;
-  display: block;
-  position: absolute;
-  top: -1%;
-  left: -1%;
-  right: 0;
-  bottom: 0;
 `
 const ProjectInfo = styled.div`
   display: flex;
@@ -125,14 +110,10 @@ const ProjectArticle = ({ className, project }: Props) => (
       <Title>{project.title}</Title>
     </TightWrapper>
     <Wrapper>
-      <FeaturedImage
-        tag={"div"}
+      <ShapedImageStyled
         fluid={project.featuredImage.fluid}
         alt={"Featured image of this project"}
-        fadeIn={"soft"}
-      >
-        <Frame src={featuredImageFrame} alt={"Image frame"} />
-      </FeaturedImage>
+      />
     </Wrapper>
     <TightWrapper>
       <ProjectInfo>
