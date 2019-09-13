@@ -1,4 +1,6 @@
 [ignore]
+.*/public/.*
+.*/.cache/.*
 
 [include]
 
