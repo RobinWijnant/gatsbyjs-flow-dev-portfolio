@@ -51,7 +51,7 @@ const Header = ({ className }: Props) => (
           <NavLink to="/">Home</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink to="/cases">Projects</NavLink>
+          <NavLink to="/projects">Projects</NavLink>
         </NavItem>
       </NavList>
     </nav>
