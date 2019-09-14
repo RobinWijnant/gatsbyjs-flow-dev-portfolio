@@ -121,6 +121,9 @@ export const query = graphql`
         title {
           value
         }
+        description {
+          value
+        }
         type {
           value
         }

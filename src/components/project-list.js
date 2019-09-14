@@ -6,12 +6,13 @@ import type { ProjectListItem } from "../query-parsers/project-list-item"
 import LinkWrapper from "./link-wrapper"
 import ProjectType from "./project-type"
 import ShapedImage from "./shaped-image"
+import TextTruncate from "react-text-truncate"
 
 const Container = styled.ul`
   width: 100%;
   padding: 0;
 
-  @media (max-width: 500px) {
+  @media (max-width: 600px) {
     margin-top: 20%;
   }
 `
@@ -20,20 +21,22 @@ const Project = styled.li`
   display: grid;
   list-style-type: none;
   grid-template-columns: auto 50%;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto auto 1fr;
   grid-column-gap: 6%;
   grid-template-areas:
     "title image"
+    "description image"
     "meta image";
 
   &:nth-of-type(even) {
     grid-template-areas:
       "image title"
+      "image description"
       "image meta";
     grid-template-columns: 50% auto;
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: 600px) {
     margin: 12% 0;
     &,
     &:nth-of-type(even) {
@@ -48,28 +51,47 @@ const Project = styled.li`
 `
 const Title = styled.span`
   grid-area: title;
+  align-self: bottom;
   color: ${styleVars.colors.black};
   font-size: 24px;
   font-weight: 600;
-  margin-top: 15%;
+  margin-top: 10%;
 
   &:hover {
     text-decoration: underline;
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: 800px) {
+    font-size: 20px;
+  }
+
+  @media (max-width: 600px) {
     margin-top: 8%;
+  }
+`
+const Description = styled.div`
+  grid-area: description;
+  margin: 5% 0;
+  line-height: 24px;
+
+  @media (max-width: 800px) {
+    display: none;
   }
 `
 const MetaInfo = styled.span`
   grid-area: meta;
-  margin: 5% 0;
+  margin: 0;
+
+  @media (max-width: 800px) {
+    margin: 5% 0;
+  }
 `
 const Date = styled.span`
   margin-left: 20px;
 `
 const LinkImageWrapper = styled(LinkWrapper)`
   grid-area: image;
+  align-self: center;
 `
 
 type Props = {
@@ -85,6 +107,14 @@ const ProjectList = ({ className, projects }: Props) => (
           <Title>
             <LinkWrapper to={project.url}>{project.title}</LinkWrapper>
           </Title>
+          <Description>
+            <TextTruncate
+              line={2}
+              element="span"
+              truncateText="…"
+              text={project.description}
+            />
+          </Description>
           <MetaInfo>
             <ProjectType>{project.type}</ProjectType>
             <Date>{project.date}</Date>
