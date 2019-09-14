@@ -4,6 +4,7 @@ import styled from "@emotion/styled"
 import styleVars from "../styles/vars"
 import Color from "color"
 import ProjectType from "./project-type"
+import filterIcon from "../images/icons/filter.svg"
 
 const List = styled.ul`
   display: flex;
@@ -11,6 +12,10 @@ const List = styled.ul`
   flex-wrap: wrap;
   margin-right: -10px;
   padding: 0;
+`
+const FilterIcon = styled.img`
+  width: 20px;
+  margin: -8px 10px 0 0;
 `
 const ListItem = styled.li`
   list-style-type: none;
@@ -70,6 +75,7 @@ class TypeFilter extends React.Component<Props, State> {
   render() {
     return (
       <List className={this.props.className}>
+        <FilterIcon src={filterIcon} alt={"Filter icon"} />
         {this.types.map((type: string, index: number) => {
           return (
             <ListItem onClick={this.toggleFilter.bind(this, type)} key={index}>

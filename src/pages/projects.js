@@ -31,7 +31,6 @@ const TypeFilterStyled = styled(TypeFilter)`
 
   @media (max-width: 500px) {
     margin: 14% 0 0;
-    justify-content: flex-start;
   }
 `
 
