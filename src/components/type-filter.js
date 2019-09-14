@@ -10,6 +10,7 @@ const List = styled.ul`
   justify-content: flex-end;
   flex-wrap: wrap;
   margin-right: -10px;
+  padding: 0;
 `
 const ListItem = styled.li`
   list-style-type: none;

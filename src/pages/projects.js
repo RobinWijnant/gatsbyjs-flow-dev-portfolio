@@ -20,6 +20,19 @@ const TopContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   margin: 30px 0 -20px;
+
+  @media (max-width: 500px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+`
+const TypeFilterStyled = styled(TypeFilter)`
+  margin: 0 0 0 8%;
+
+  @media (max-width: 500px) {
+    margin: 14% 0 0;
+    justify-content: flex-start;
+  }
 `
 
 type Props = {
@@ -74,7 +87,9 @@ export default class Projects extends React.Component<Props, State> {
           <Header />
           <TopContainer>
             <PageHeading>Projects</PageHeading>
-            <TypeFilter onFilter={this.onFilter.bind(this)}></TypeFilter>
+            <TypeFilterStyled
+              onFilter={this.onFilter.bind(this)}
+            ></TypeFilterStyled>
           </TopContainer>
           <ProjectList projects={this.state.filteredProjects} />
           <Footer projects={this.pageData.footerProjects} />
