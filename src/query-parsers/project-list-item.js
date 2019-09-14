@@ -8,6 +8,7 @@ export type ProjectListItem = {
   type: string,
   date: string,
   featuredImage: any,
+  visible: boolean,
 }
 
 const parse = (node: any): ProjectListItem => {
@@ -18,6 +19,7 @@ const parse = (node: any): ProjectListItem => {
     type: node.type.value[0],
     date: node.date.value,
     featuredImage: node.featured_image.value.childImageSharp,
+    visible: true,
   }
 }
 

@@ -40,43 +40,42 @@ type Props = {
 }
 
 type State = {
-  filteredProjects: ProjectListItem[],
-}
-
-type ProjectsPageData = {
   projects: ProjectListItem[],
-  footerProjects: FooterProject[],
 }
 
 export default class Projects extends React.Component<Props, State> {
-  state = {
-    filteredProjects: [],
-  }
-  pageData: ProjectsPageData
+  footerProjects: FooterProject[]
 
   constructor(props: Props) {
     super(props)
-    this.pageData = {
+    this.state = {
       projects: this.props.data.allCockpitProjects.nodes.map(node =>
         ProjectListItemParser.parse(node)
       ),
-      footerProjects: this.props.data.allCockpitProjects.nodes
-        .slice(0, 3)
-        .map(node => FooterProjectParser.parse(node)),
     }
-    this.state = { filteredProjects: this.pageData.projects }
+    this.footerProjects = this.props.data.allCockpitProjects.nodes
+      .slice(0, 3)
+      .map(node => FooterProjectParser.parse(node))
   }
 
   onFilter(types: string[]) {
-    let filteredProjects
+    let projects
     if (types.length === 0) {
-      filteredProjects = this.pageData.projects
+      projects = this.state.projects.map(p => {
+        p.visible = true
+        return p
+      })
     } else {
-      filteredProjects = this.pageData.projects.filter(project =>
-        types.includes(project.type)
-      )
+      projects = this.state.projects.map(p => {
+        if (types.includes(p.type)) {
+          p.visible = true
+        } else {
+          p.visible = false
+        }
+        return p
+      })
     }
-    this.setState({ filteredProjects: filteredProjects })
+    this.setState({ projects })
   }
 
   render() {
@@ -91,8 +90,8 @@ export default class Projects extends React.Component<Props, State> {
               onFilter={this.onFilter.bind(this)}
             ></TypeFilterStyled>
           </TopContainer>
-          <ProjectList projects={this.state.filteredProjects} />
-          <Footer projects={this.pageData.footerProjects} />
+          <ProjectList projects={this.state.projects} />
+          <Footer projects={this.footerProjects} />
         </Wrapper>
       </Page>
     )

@@ -27,6 +27,7 @@ const Project = styled.li`
     "title image"
     "description image"
     "meta image";
+  display: ${props => (props.visible ? "grid" : "none")};
 
   &:nth-of-type(even) {
     grid-template-areas:
@@ -103,7 +104,7 @@ const ProjectList = ({ className, projects }: Props) => (
   <Container className={className}>
     {projects.map((project: ProjectListItem, index: number) => {
       return (
-        <Project key={index}>
+        <Project key={index} visible={project.visible}>
           <Title>
             <LinkWrapper to={project.url}>{project.title}</LinkWrapper>
           </Title>
