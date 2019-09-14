@@ -25,25 +25,55 @@ const Type = styled.span`
   background-size: 200px 200px;
   background-repeat: no-repeat;
   background-position: -115px;
+  cursor: pointer;
+  transition: border 0.4s, background 0.4s;
+
+  &:hover {
+    background-color: ${styleVars.colors.grey[100]};
+  }
+
+  &.active {
+    border-color: ${styleVars.colors.blue};
+    background-image: radial-gradient(
+      ${Color(styleVars.colors.blue)
+          .lighten(0.2)
+          .hex()}
+        15%,
+      transparent 15%
+    );
+  }
+
+  &.active:hover {
+    background-color: ${Color(styleVars.colors.blue)
+      .lighten(0.3)
+      .hex()};
+  }
 `
 
 type Props = {
   size?: number,
-  active: boolean,
+  active?: boolean,
   className?: string,
   children?: React.Node,
+  onClick?: () => void,
 }
 
-const ProjectType = ({ className, children, size }: Props) => {
+const ClickableProjectType = (props: Props) => {
   return (
-    <Type className={className} size={size}>
-      {children}
+    <Type
+      className={`${props.className} ${props.active ? "active" : ""}`}
+      size={props.size}
+      onClick={props.onClick}
+    >
+      {props.children}
     </Type>
   )
 }
 
-ProjectType.defaultProps = {
+ClickableProjectType.defaultProps = {
   size: 1,
+  active: false,
+  className: "",
 }
 
-export default ProjectType
+export default ClickableProjectType

@@ -3,7 +3,7 @@ import * as React from "react"
 import styled from "@emotion/styled"
 import styleVars from "../styles/vars"
 import Color from "color"
-import ProjectType from "./project-type"
+import ClickableProjectType from "./clickable-project-type"
 import filterIcon from "../images/icons/filter.svg"
 
 const List = styled.ul`
@@ -21,21 +21,6 @@ const ListItem = styled.li`
   list-style-type: none;
   display: block;
   margin: 0 5px 10px;
-`
-const ProjectTypeStyled = styled(ProjectType)`
-  cursor: pointer;
-  transition: border 0.4s, background 0.4s;
-
-  &:hover {
-    background-color: ${styleVars.colors.grey[100]};
-  }
-
-  &.active {
-    background-color: ${Color(styleVars.colors.blue)
-      .lighten(0.32)
-      .hex()};
-    border-color: ${styleVars.colors.blue};
-  }
 `
 
 type Props = {
@@ -78,15 +63,14 @@ class TypeFilter extends React.Component<Props, State> {
         <FilterIcon src={filterIcon} alt={"Filter icon"} />
         {this.types.map((type: string, index: number) => {
           return (
-            <ListItem onClick={this.toggleFilter.bind(this, type)} key={index}>
-              <ProjectTypeStyled
-                className={
-                  this.state.selectedTypes.includes(type) ? "active" : ""
-                }
-                size={1.08}
+            <ListItem key={index}>
+              <ClickableProjectType
+                onClick={this.toggleFilter.bind(this, type)}
+                active={this.state.selectedTypes.includes(type)}
+                size={1.2}
               >
                 {type}
-              </ProjectTypeStyled>
+              </ClickableProjectType>
             </ListItem>
           )
         })}
