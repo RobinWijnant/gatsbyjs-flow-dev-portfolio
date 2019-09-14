@@ -29,7 +29,6 @@ const Type = styled.span`
 
 type Props = {
   size?: number,
-  active: boolean,
   className?: string,
   children?: React.Node,
 }
