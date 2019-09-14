@@ -26,16 +26,24 @@ type Props = {
   data: any,
 }
 
+type State = {
+  filteredProjects: ProjectListItem[],
+}
+
 type ProjectsPageData = {
   projects: ProjectListItem[],
   footerProjects: FooterProject[],
 }
 
-export default class Projects extends React.Component<Props> {
-  onFilter(types: string[]) {}
+export default class Projects extends React.Component<Props, State> {
+  state = {
+    filteredProjects: [],
+  }
+  pageData: ProjectsPageData
 
-  render() {
-    const pageData: ProjectsPageData = {
+  constructor(props: Props) {
+    super(props)
+    this.pageData = {
       projects: this.props.data.allCockpitProjects.nodes.map(node =>
         ProjectListItemParser.parse(node)
       ),
@@ -43,6 +51,22 @@ export default class Projects extends React.Component<Props> {
         .slice(0, 3)
         .map(node => FooterProjectParser.parse(node)),
     }
+    this.state = { filteredProjects: this.pageData.projects }
+  }
+
+  onFilter(types: string[]) {
+    let filteredProjects
+    if (types.length === 0) {
+      filteredProjects = this.pageData.projects
+    } else {
+      filteredProjects = this.pageData.projects.filter(project =>
+        types.includes(project.type)
+      )
+    }
+    this.setState({ filteredProjects: filteredProjects })
+  }
+
+  render() {
     return (
       <Page>
         <SEO title="Projects" />
@@ -52,8 +76,8 @@ export default class Projects extends React.Component<Props> {
             <PageHeading>Projects</PageHeading>
             <TypeFilter onFilter={this.onFilter.bind(this)}></TypeFilter>
           </TopContainer>
-          <ProjectList projects={pageData.projects} />
-          <Footer projects={pageData.footerProjects} />
+          <ProjectList projects={this.state.filteredProjects} />
+          <Footer projects={this.pageData.footerProjects} />
         </Wrapper>
       </Page>
     )
@@ -74,7 +98,7 @@ export const query = graphql`
           value {
             childImageSharp {
               fluid(maxWidth: 2000) {
-                src
+                ...GatsbyImageSharpFluid_withWebp
               }
             }
           }

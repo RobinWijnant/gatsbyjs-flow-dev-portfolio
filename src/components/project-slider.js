@@ -120,8 +120,8 @@ const ProjectLink = styled(LinkWrapper)`
   right: 0;
   background: linear-gradient(
     204.93deg,
-    rgba(200, 200, 200, 0.1) 20%,
-    white 75%
+    rgba(255, 255, 255, 0.2) 2%,
+    white 70%
   );
   border-radius: 30px;
   display: flex;
