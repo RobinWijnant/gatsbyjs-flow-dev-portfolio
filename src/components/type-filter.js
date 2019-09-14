@@ -1,8 +1,6 @@
 // @flow
 import * as React from "react"
 import styled from "@emotion/styled"
-import styleVars from "../styles/vars"
-import Color from "color"
 import ClickableProjectType from "./clickable-project-type"
 import filterIcon from "../images/icons/filter.svg"
 
