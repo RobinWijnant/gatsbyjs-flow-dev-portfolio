@@ -44,6 +44,7 @@ type State = {
 
 export default class Projects extends React.Component<Props, State> {
   footerProjects: FooterProject[]
+  types: string[]
 
   constructor(props: Props) {
     super(props)
@@ -55,6 +56,12 @@ export default class Projects extends React.Component<Props, State> {
     this.footerProjects = this.props.data.allCockpitProjects.nodes
       .slice(0, 3)
       .map(node => FooterProjectParser.parse(node))
+    this.types = this.getTypes(this.state.projects)
+  }
+
+  getTypes(projects: ProjectListItem[]): string[] {
+    const types: string[] = projects.map(p => p.type)
+    return [...new Set(types)] // distinct
   }
 
   onFilter(types: string[]) {
@@ -87,6 +94,7 @@ export default class Projects extends React.Component<Props, State> {
             <PageHeading>Projects</PageHeading>
             <TypeFilterStyled
               onFilter={this.onFilter.bind(this)}
+              types={this.types}
             ></TypeFilterStyled>
           </TopContainer>
           <ProjectList projects={this.state.projects} />

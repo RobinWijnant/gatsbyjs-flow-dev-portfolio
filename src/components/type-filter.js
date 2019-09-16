@@ -28,6 +28,7 @@ const ListItem = styled.li`
 
 type Props = {
   className?: string,
+  types: string[],
   onFilter: (selectedTypes: string[]) => void,
 }
 
@@ -39,15 +40,6 @@ class TypeFilter extends React.Component<Props, State> {
   state = {
     selectedTypes: [],
   }
-
-  types: Array<string> = [
-    "Design",
-    "Website",
-    "ML/AI",
-    "CI/CD",
-    "Web app",
-    "Blockchain",
-  ]
 
   toggleFilter(type: string) {
     let newSelectedTypes
@@ -65,7 +57,7 @@ class TypeFilter extends React.Component<Props, State> {
       <Container className={this.props.className}>
         <FilterIcon src={filterIcon} alt={"Filter icon"} />
         <List>
-          {this.types.map((type: string, index: number) => {
+          {this.props.types.map((type: string, index: number) => {
             return (
               <ListItem key={index}>
                 <ClickableProjectType
