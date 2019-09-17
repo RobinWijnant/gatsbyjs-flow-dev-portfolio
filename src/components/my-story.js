@@ -42,7 +42,7 @@ const MyStory = ({ className }: Props) => (
       implementation which is still actively used today. My urge to design and
       develop impressive digital experiences was like vitamin D for my body.
       Soon other clients and websites followed which empowered me to level up my
-      soft and hard skills.
+      soft and hard skills. The choice in further education was obvious.
     </Text>
     <Quote>Creativity is just connecting things.</Quote>
     <Text>
