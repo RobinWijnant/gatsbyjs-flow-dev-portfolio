@@ -8,6 +8,7 @@ export type DetailedProject = {
   date: string,
   techStack: string[],
   description: string,
+  links?: string[],
   resultImages?: any,
   resultTitle?: string,
   resultText?: string,
@@ -22,6 +23,9 @@ const parse = (node: any): DetailedProject => {
     date: node.date.value,
     techStack: node.tech_stack.value,
     description: node.description.value,
+  }
+  if (node.links) {
+    parsed.links = node.links.value.map(l => l.value)
   }
   if (node.result_images) {
     parsed.resultImages = node.result_images.value.map(

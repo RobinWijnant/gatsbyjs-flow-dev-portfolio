@@ -7,6 +7,7 @@ import Wrapper from "./wrapper"
 import Img from "gatsby-image"
 import ShapedImage from "./shaped-image"
 import type { DetailedProject } from "../query-parsers/detailed-project"
+import ButtonLinkFactory from "./button-link-factory"
 
 const Article = styled.article`
   margin-top: 40px;
@@ -42,50 +43,48 @@ const ShapedImageStyled = styled(ShapedImage)`
   margin: 80px 0;
 `
 const ProjectInfo = styled.div`
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-auto-columns: auto 70%;
+  grid-auto-rows: auto 1fr;
+  grid-column-gap: 10%;
+  grid-row-gap: 50px;
+  grid-template-areas:
+    "project description"
+    "techstack description";
   margin: 80px 0;
 
   @media (max-width: 500px) {
-    flex-direction: column;
+    grid-auto-columns: auto auto;
+    grid-template-areas:
+      "project techstack"
+      "description description";
   }
 `
 const PropertyList = styled.dl`
   margin: 0;
-
-  @media (max-width: 500px) {
-    display: grid;
-    grid-template-rows: auto auto;
-    grid-auto-flow: column;
-    grid-column-gap: 10%;
-  }
+`
+const ProjectBlock = styled(PropertyList)`
+  grid-area: project;
+`
+const TechStackBlock = styled(PropertyList)`
+  grid-area: techstack;
+`
+const DescriptionBlock = styled(PropertyList)`
+  grid-area: description;
 `
 const Dt = styled.dt`
   font-weight: 600;
-  margin-bottom: 15px;
-
-  &:nth-of-type(n + 2) {
-    margin-top: 50px;
-  }
-
-  @media (max-width: 500px) {
-    &:nth-of-type(n + 2) {
-      margin-top: 0;
-    }
-  }
 `
 const Dd = styled.dd`
   margin: 0;
+  margin-top: 15px;
   line-height: 25px;
 `
-const DescriptionBlock = styled(PropertyList)`
-  width: 70%;
-  margin-left: 10%;
-
-  @media (max-width: 500px) {
-    width: 100%;
-    margin: 50px 0 0;
-  }
+const ButtonsContainer = styled(Dd)`
+  margin: 10px 0 0 -15px;
+`
+const ButtonLinkFactoryStyled = styled(ButtonLinkFactory)`
+  margin: 25px 0 0 15px;
 `
 const ResultImage = styled(Img)`
   border-radius: 20px;
@@ -117,23 +116,44 @@ const ProjectArticle = ({ className, project }: Props) => (
     </Wrapper>
     <TightWrapper>
       <ProjectInfo>
-        <PropertyList>
+        <ProjectBlock>
           <Dt>Project</Dt>
           <Dd>
             {project.type}
             <br />
             {project.date}
           </Dd>
+        </ProjectBlock>
+        <TechStackBlock>
           <Dt>Tech Stack</Dt>
           <Dd>{project.techStack.join(", ")}</Dd>
-        </PropertyList>
+        </TechStackBlock>
         <DescriptionBlock>
           <Dt>The challenge</Dt>
           <Dd>{project.description}</Dd>
+          <ButtonsContainer>
+            {project.links &&
+              project.links.map((link: string, index: number) => {
+                return <ButtonLinkFactoryStyled to={link} key={index} />
+              })}
+          </ButtonsContainer>
         </DescriptionBlock>
       </ProjectInfo>
+      {project.resultImages && project.resultImages[0] && (
+        <ResultImage
+          fluid={project.resultImages[0].fluid}
+          maxWidth={project.resultImages[0].fluid.presentationWidth}
+          alt={"Extra result image of this project"}
+        />
+      )}
+      {project.resultText && (
+        <ResultTextBlock>
+          {project.resultTitle && <Dt>{project.resultTitle}</Dt>}
+          <Dd>{project.resultText}</Dd>
+        </ResultTextBlock>
+      )}
       {project.resultImages &&
-        project.resultImages.map((image: any, index: number) => {
+        project.resultImages.slice(1).map((image: any, index: number) => {
           return (
             <ResultImage
               key={index}
@@ -143,12 +163,6 @@ const ProjectArticle = ({ className, project }: Props) => (
             />
           )
         })}
-      {project.resultText && (
-        <ResultTextBlock>
-          {project.resultTitle && <Dt>{project.resultTitle}</Dt>}
-          <Dd>{project.resultText}</Dd>
-        </ResultTextBlock>
-      )}
     </TightWrapper>
   </Article>
 )

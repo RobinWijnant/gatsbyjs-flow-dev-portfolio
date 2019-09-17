@@ -7,6 +7,7 @@ import css from "@emotion/css"
 const LinkStyles = css`
   color: inherit;
   text-decoration: none;
+  display: inline-block;
 `
 
 type Props = {
