@@ -86,6 +86,7 @@ const Footer = ({ className, projects }: Props) => (
         <Item>
           <ItemLink to={"/projects"}>Projects</ItemLink>
         </Item>
+        <Item>&copy; {new Date().getFullYear()} RW</Item>
       </Listing>
     </ContentBlock>
     <ContentBlock className={"recent-projects"}>
