@@ -17,6 +17,7 @@ module.exports = {
     title: `Robin Wijnant Dev portfolio`,
     description: `The dev portfolio of Robin Wijnant. Find out more about me and the projects I have worked on. Links to code on GitHub provided.`,
     author: `@robinwijnant`,
+    siteUrl: `https://robinwijnant.me`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -75,6 +76,23 @@ module.exports = {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         trackingId: process.env.GA_ID,
+      },
+    },
+    "gatsby-plugin-sitemap",
+    {
+      resolve: "gatsby-plugin-robots-txt",
+      options: {
+        host: "https://robinwijnant.me",
+        sitemap: "https://robinwijnant.me/sitemap.xml",
+        policy: [{ userAgent: "*", allow: "/" }],
+      },
+    },
+    {
+      resolve: "gatsby-plugin-htaccess",
+      options: {
+        https: true,
+        www: false,
+        host: "robinwijnant.me",
       },
     },
   ],
