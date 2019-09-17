@@ -7,22 +7,11 @@ import linkedInIcon from "../images/icons/linked-in.png"
 import twitterIcon from "../images/icons/twitter.png"
 
 const Container = styled.div`
-  margin: 80px 0;
+  margin: calc(3% + 20px) -12px 0 0;
   text-align: center;
 
-  & > * + * {
-    margin-left: 25px;
-  }
-
-  @media (max-width: 735px) {
-    & > * + * {
-      margin-left: 0;
-    }
-
-    & > * {
-      display: table;
-      margin: 20px auto;
-    }
+  & > * {
+    margin: 15px 12px;
   }
 `
 
