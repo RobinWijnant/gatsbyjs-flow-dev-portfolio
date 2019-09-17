@@ -71,5 +71,11 @@ module.exports = {
     },
     "gatsby-plugin-flow",
     "gatsby-transformer-remark",
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: process.env.GA_ID,
+      },
+    },
   ],
 }
