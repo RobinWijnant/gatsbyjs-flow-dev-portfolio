@@ -19,6 +19,7 @@ import Footer from "../components/footer"
 
 type HomePageData = {
   bannerImage: any,
+  allProjectsImage: any,
   recentProjects: FeaturedProject[],
   footerProjects: FooterProject[],
 }
@@ -26,6 +27,7 @@ type HomePageData = {
 export default ({ data }: any) => {
   const pageData: HomePageData = {
     bannerImage: data.cockpitHome.banner_image.value.childImageSharp,
+    allProjectsImage: data.cockpitHome.all_projects_image.value.childImageSharp,
     recentProjects: data.allCockpitProjects.nodes.map(node =>
       FeaturedProjectParser.parse(node)
     ),
@@ -42,7 +44,10 @@ export default ({ data }: any) => {
         <SectionHeading>Some of my latest work</SectionHeading>
       </TightWrapper>
       <ShapeWrapper>
-        <ProjectSlider projects={pageData.recentProjects} />
+        <ProjectSlider
+          allProjectsImage={pageData.allProjectsImage}
+          projects={pageData.recentProjects}
+        />
       </ShapeWrapper>
       <TightWrapper>
         <SectionHeading>This is my story</SectionHeading>
@@ -68,18 +73,27 @@ export const query = graphql`
           }
         }
       }
+      all_projects_image {
+        value {
+          childImageSharp {
+            fluid(maxWidth: 500, quality: 90) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
+        }
+      }
     }
     allCockpitProjects(
       filter: { published: { value: { eq: true } } }
       sort: { fields: date___value, order: DESC }
-      limit: 6
+      limit: 5
     ) {
       nodes {
         cockpitId
         featured_image {
           value {
             childImageSharp {
-              fluid(maxWidth: 500) {
+              fluid(maxWidth: 500, quality: 90) {
                 ...GatsbyImageSharpFluid_withWebp
               }
             }

@@ -130,8 +130,15 @@ const ProjectTypeStyled = styled(ProjectType)`
   margin: 0 0 6% 7%;
 `
 
+const ProjectText = styled.span`
+  margin: 0 0 8% 12%;
+  font-weight: 500;
+  font-size: 15px;
+`
+
 type Props = {
   className?: string,
+  allProjectsImage: any,
   projects: FeaturedProject[],
 }
 
@@ -239,6 +246,15 @@ class ProjectSlider extends React.Component<Props, State> {
                 </Project>
               )
             )}
+            <Project
+              tag={"div"}
+              fluid={this.props.allProjectsImage.fluid}
+              fadeIn={"soft"}
+            >
+              <ProjectLink to={"/projects"} aria-label={"Go to all projects"}>
+                <ProjectText>All projects</ProjectText>
+              </ProjectLink>
+            </Project>
           </ProjectDeck>
         </Projects>
         <Arrow
