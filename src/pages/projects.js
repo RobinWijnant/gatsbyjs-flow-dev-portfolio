@@ -14,8 +14,6 @@ import styled from "@emotion/styled"
 import PageHeading from "../components/page-heading"
 import TypeFilter from "../components/type-filter"
 import ProjectList from "../components/project-list"
-import queryString from "query-string"
-import { navigate } from "gatsby"
 
 const TopContainer = styled.div`
   display: flex;
@@ -38,26 +36,21 @@ const TypeFilterStyled = styled(TypeFilter)`
 
 type Props = {
   data: any,
-  location: any,
 }
 
 type State = {
   projects: ProjectListItem[],
-  initialFilteredTypes: string[],
 }
 
 export default class Projects extends React.Component<Props, State> {
-  footerProjects: Array<FooterProject>
-  types: Array<string>
+  footerProjects: FooterProject[]
+  types: string[]
 
   constructor(props: Props) {
     super(props)
     this.state = {
       projects: this.props.data.allCockpitProjects.nodes.map(node =>
         ProjectListItemParser.parse(node)
-      ),
-      initialFilteredTypes: this.getInitialFilteredTypesFromQueryParams(
-        this.props.location.search
       ),
     }
     this.footerProjects = this.props.data.allCockpitProjects.nodes
@@ -66,7 +59,12 @@ export default class Projects extends React.Component<Props, State> {
     this.types = this.getTypes(this.state.projects)
   }
 
-  getProjectsForTypes(types: Array<string>): Array<ProjectListItem> {
+  getTypes(projects: ProjectListItem[]): string[] {
+    const types: string[] = projects.map(p => p.type)
+    return [...new Set(types)] // distinct
+  }
+
+  onFilter(types: string[]) {
     let projects
     if (types.length === 0) {
       projects = this.state.projects.map(p => {
@@ -83,37 +81,7 @@ export default class Projects extends React.Component<Props, State> {
         return p
       })
     }
-    return projects
-  }
-
-  getInitialFilteredTypesFromQueryParams(queryParams: string) {
-    const parsedParams = queryString.parse(queryParams)
-    if (typeof parsedParams.types === "undefined") return []
-    return parsedParams.types.split(",")
-  }
-
-  getTypes(projects: Array<ProjectListItem>): Array<string> {
-    const types: Array<string> = projects.map(p => p.type)
-    return [...new Set(types)] // distinct
-  }
-
-  onFilter(types: Array<string>) {
-    const projects = this.getProjectsForTypes(types)
     this.setState({ projects })
-    this.persistFilteredTypes(types)
-  }
-
-  persistFilteredTypes(types: Array<string>) {
-    let parsedParams = queryString.parse(this.props.location.search)
-    parsedParams = { ...parsedParams, types }
-    const stringifiedParams = queryString.stringify(parsedParams, {
-      arrayFormat: "comma",
-    })
-    if (stringifiedParams.length > 0) {
-      navigate(`/projects?${stringifiedParams}`)
-    } else {
-      navigate("/projects")
-    }
   }
 
   render() {
@@ -127,7 +95,6 @@ export default class Projects extends React.Component<Props, State> {
             <TypeFilterStyled
               onFilter={this.onFilter.bind(this)}
               types={this.types}
-              initialFilteredTypes={this.state.initialFilteredTypes}
             ></TypeFilterStyled>
           </TopContainer>
           <ProjectList projects={this.state.projects} />
