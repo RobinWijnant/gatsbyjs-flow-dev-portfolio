@@ -61,7 +61,7 @@ type Props = {
 const ClickableProjectType = (props: Props) => {
   return (
     <Type
-      className={`${props.className} ${props.active ? "active" : ""}`}
+      className={`${props.className || ""} ${props.active ? "active" : ""}`}
       size={props.size}
       onClick={props.onClick}
     >
