@@ -1,26 +1,21 @@
 # Developer portfolio using GatsbyJS, Flow & Cockpit CMS
 
-![](./readme-assets/home.gif =250x)
+<img src="./readme-assets/home.gif" alt="drawing" width="100%"/>
 
-## 📃 Pages
+<img src="./readme-assets/projects.gif" alt="drawing" width="100%"/>
 
-- Home page
-  - Banner with text
-  - Projects preview slider
-  - About me text
-- Projects page
-  - list of projects with limited info
-- Project details template page
-  - Title
-  - Featured image
-  - Meta info
-  - Description
-  - External link
-  - More images or text
+<img src="./readme-assets/project.gif" alt="drawing" width="100%"/>
 
 ## 🚀 Quick start
 
-Start the develop environment:
+Create an environment file (./.env):
+
+```env
+COCKPIT_TOKEN=yoursHere
+GA_ID=yoursHere
+```
+
+Start the development server:
 
 ```bash
 npm run start
