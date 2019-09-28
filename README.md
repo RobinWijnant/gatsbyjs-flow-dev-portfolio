@@ -1,6 +1,10 @@
 # Developer portfolio using GatsbyJS, Flow & Cockpit CMS
 
+This portfolio was created in addition to my Linked-in profile. My goal was to give recruiters an overview of my projects and skills.
+
 ## 👀 Preview
+
+Some gifs to give you goosebumps
 
 ### Home page
 
