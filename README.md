@@ -1,8 +1,16 @@
 # Developer portfolio using GatsbyJS, Flow & Cockpit CMS
 
+## 👀 Preview
+
+### Home page
+
 <img src="./readme-assets/home.gif" alt="drawing" width="100%"/>
 
+### Projects page
+
 <img src="./readme-assets/projects.gif" alt="drawing" width="100%"/>
+
+### Project details page
 
 <img src="./readme-assets/project.gif" alt="drawing" width="100%"/>
 
