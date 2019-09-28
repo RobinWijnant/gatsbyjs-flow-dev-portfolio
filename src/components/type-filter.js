@@ -29,6 +29,7 @@ const ListItem = styled.li`
 type Props = {
   className?: string,
   types: string[],
+  initialFilteredTypes: string[],
   onFilter: (selectedTypes: string[]) => void,
 }
 
@@ -38,7 +39,11 @@ type State = {
 
 class TypeFilter extends React.Component<Props, State> {
   state = {
-    selectedTypes: [],
+    selectedTypes: this.props.initialFilteredTypes,
+  }
+
+  componentDidMount() {
+    this.props.onFilter(this.state.selectedTypes)
   }
 
   toggleFilter(type: string) {
