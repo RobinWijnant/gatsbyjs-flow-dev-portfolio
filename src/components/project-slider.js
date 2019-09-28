@@ -6,6 +6,7 @@ import BackgroundImage from "gatsby-background-image"
 import type { FeaturedProject } from "../query-parsers/featured-project"
 import LinkWrapper from "./link-wrapper"
 import ProjectType from "./project-type"
+import { Swipeable } from "react-swipeable"
 
 const Container = styled.div`
   width: 100%;
@@ -225,37 +226,42 @@ class ProjectSlider extends React.Component<Props, State> {
           onClick={this.previous.bind(this)}
         />
         <Projects>
-          <ProjectDeck
-            ref={this.projectDeckRef}
-            style={{ marginLeft: -this.state.deckOffset + "px" }}
+          <Swipeable
+            onSwipedLeft={this.next.bind(this)}
+            onSwipedRight={this.previous.bind(this)}
           >
-            {this.props.projects.map(
-              (project: FeaturedProject, index: number) => (
-                <Project
-                  key={index}
-                  tag={"div"}
-                  fluid={project.featuredImage.fluid}
-                  fadeIn={"soft"}
-                >
-                  <ProjectLink
-                    to={project.url}
-                    aria-label={`Go to project: ${project.title}`}
-                  >
-                    <ProjectTypeStyled>{project.type}</ProjectTypeStyled>
-                  </ProjectLink>
-                </Project>
-              )
-            )}
-            <Project
-              tag={"div"}
-              fluid={this.props.allProjectsImage.fluid}
-              fadeIn={"soft"}
+            <ProjectDeck
+              ref={this.projectDeckRef}
+              style={{ marginLeft: -this.state.deckOffset + "px" }}
             >
-              <ProjectLink to={"/projects"} aria-label={"Go to all projects"}>
-                <ProjectText>All projects</ProjectText>
-              </ProjectLink>
-            </Project>
-          </ProjectDeck>
+              {this.props.projects.map(
+                (project: FeaturedProject, index: number) => (
+                  <Project
+                    key={index}
+                    tag={"div"}
+                    fluid={project.featuredImage.fluid}
+                    fadeIn={"soft"}
+                  >
+                    <ProjectLink
+                      to={project.url}
+                      aria-label={`Go to project: ${project.title}`}
+                    >
+                      <ProjectTypeStyled>{project.type}</ProjectTypeStyled>
+                    </ProjectLink>
+                  </Project>
+                )
+              )}
+              <Project
+                tag={"div"}
+                fluid={this.props.allProjectsImage.fluid}
+                fadeIn={"soft"}
+              >
+                <ProjectLink to={"/projects"} aria-label={"Go to all projects"}>
+                  <ProjectText>All projects</ProjectText>
+                </ProjectLink>
+              </Project>
+            </ProjectDeck>
+          </Swipeable>
         </Projects>
         <Arrow
           aria-label={"next"}
