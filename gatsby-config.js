@@ -60,14 +60,16 @@ module.exports = {
     },
     "gatsby-plugin-emotion",
     {
-      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      resolve: `gatsby-plugin-webfonts`,
       options: {
-        fonts: [
-          {
-            family: `Montserrat`,
-            variants: [`400`, `500`, `600`, `700`],
-          },
-        ],
+        fonts: {
+          google: [
+            {
+              family: `Montserrat`,
+              variants: [`400`, `500`, `600`, `700`],
+            },
+          ],
+        },
       },
     },
     "gatsby-plugin-flow",
